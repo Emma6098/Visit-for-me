@@ -1,0 +1,9 @@
+<h1>Coucou de l'index!</h1>
+<%# <%= link_to "show", visit_form_path(visit_form)%>
+<%= link_to "new", new_visit_form_path, class: "btn btn-flat" %>
+
+<% @visit_forms.each do |visit_form|%>
+  <%= link_to visit_form_path(visit_form) do%>
+    <h3><%= visit_form.title %></h3>
+  <%end%>
+<% end %>

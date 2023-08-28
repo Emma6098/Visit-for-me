@@ -1,0 +1,7 @@
+<h1>Coucou du show!</h1>
+<%= @visit_form.title %>
+<%=link_to "Modifier le questionnaire de visite", edit_visit_form_path(@visit_form), class:"btn button-reserver"%>
+<%=link_to "Supprimer la visite", visit_form_path(@visit_form), data: {turbo_method: :delete, turbo_confirm: "Etes vous sûr de vouloir supprimer cette visite" }, class:"btn button-supprimer"%>
+<% @visit_form.criteres.each do |critere|%>
+<%= critere.content %>
+<%end%>

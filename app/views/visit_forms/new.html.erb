@@ -1,0 +1,22 @@
+<h1>Ajoute ta demande de visite !</h1>
+  <div class="containernewvisit">
+    <div class="row">
+        <%= simple_form_for [@visit_form], html: { class: 'visit-form' } do |f| %>
+          <%= f.input :title, label: 'Nom de la visite' %>
+          <%= f.input :url, label: 'Lien vers la visite' %>
+          <%= f.input :rooms_number, label: 'Nombre de pièces' %>
+          <%= f.input :address, label: 'Adresse de la visite'%>
+          <%= f.input :description, label: 'Description', input_html: { rows: 5 } %>
+          <%= f.simple_fields_for :criteres do |c|%>
+          <%= c.input :content, label: 'Critère' %>
+          <% end %>
+          <%= f.button :submit, 'Ajouter la visite', class: 'btn-submit' %>
+        <% end %>
+    </div>
+  </div>
+
+<%# ajout flatpicker
+, as: :string, input_html: { data: { controller: "datepicker" } } %>
+
+<%#  input_html: {data: {address_autocomplete_target: "address", mask_address_target: "deleteTexte"}, class: "d-none"},
+                wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
