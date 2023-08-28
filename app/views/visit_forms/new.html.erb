@@ -7,9 +7,14 @@
           <%= f.input :rooms_number, label: 'Nombre de pièces' %>
           <%= f.input :address, label: 'Adresse de la visite'%>
           <%= f.input :description, label: 'Description', input_html: { rows: 5 } %>
-          <%= f.simple_fields_for :criteres do |c|%>
-          <%= c.input :content, label: 'Critère' %>
-          <% end %>
+          <div id="criteres">
+            <%= f.simple_fields_for :criteres do |critere|%>
+              <%= render 'critere_fields', f: critere %>
+            <%end%>
+            <div class="links">
+              <%= link_to_add_association 'Ajouter un critère', f, :criteres%>
+            </div>
+          </div>
           <%= f.button :submit, 'Ajouter la visite', class: 'btn-submit' %>
         <% end %>
     </div>

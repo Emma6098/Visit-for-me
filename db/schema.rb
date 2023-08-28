@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_28_114310) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_28_142733) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -84,6 +84,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_114310) do
     t.index ["visit_form_id"], name: "index_criteres_on_visit_form_id"
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.text "description"
+    t.string "name"
+    t.bigint "visit_form_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["visit_form_id"], name: "index_rooms_on_visit_form_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -121,5 +130,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_114310) do
   add_foreign_key "chats", "chatrooms"
   add_foreign_key "chats", "users"
   add_foreign_key "criteres", "visit_forms"
+  add_foreign_key "rooms", "visit_forms"
   add_foreign_key "visit_forms", "users"
 end

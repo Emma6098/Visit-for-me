@@ -45,6 +45,6 @@ class VisitFormsController < ApplicationController
   private
 
   def visit_form_params
-    params.require(:visit_form).permit(:title, :address, :longitude, :latitude, :description, :url, :date, :rooms_number, :criteres)
+    params.require(:visit_form).permit(:title, :address, :longitude, :latitude, :description, :url, :date, :rooms_number, criteres_attributes: [:id, :content, :_destroy])
   end
 end
