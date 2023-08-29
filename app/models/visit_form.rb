@@ -10,6 +10,6 @@ class VisitForm < ApplicationRecord
   validates :address, presence: true
   validates :url, presence: true
   validates :rooms_number, presence: true
-  validates :criteres, presence: true
+  # validates :criteres, presence: true
 
 end
