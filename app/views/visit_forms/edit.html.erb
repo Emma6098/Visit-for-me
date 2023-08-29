@@ -2,14 +2,21 @@
   <div class="containernewvisit">
     <div class="row">
         <%= simple_form_for [@visit_form], html: { class: 'visit-form' } do |f| %>
-          <%= f.input :title, label: 'Nom de la visite' %>
-          <%= f.input :url, label: 'Lien vers la visite' %>
-          <%= f.input :rooms_number, label: 'Nombre de pièces' %>
-          <%= f.input :address, label: 'Adresse de la visite'%>
-          <%= f.input :description, label: 'Description', input_html: { rows: 5 } %>
-          <%= f.simple_fields_for :criteres do |c|%>
-          <%= c.input :content %>
-          <% end %>
+          <p><%= f.object.title%></p>
+          <p><%= f.object.url%></p>
+          <p><%= f.object.rooms_number%></p>
+          <p><%= f.object.address%></p>
+          <p><%= f.object.description%></p>
+          <div id="criteres">
+            <%= f.simple_fields_for :criteres do |critere|%>
+              <%= render 'critere_fields', f: critere, visit_form_user: @visit_form_user %>
+            <%end%>
+            <div class="links">
+              <%= link_to_add_association 'Ajouter un critère', f, :criteres%>
+            </div>
+            <%= f.simple_fields_for :rooms do |room|%>
+              <%= render 'room_fields', f: room %>
+          <%end%>
           <%= f.button :submit, 'Ajouter la visite', class: 'btn-submit' %>
         <% end %>
     </div>

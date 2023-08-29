@@ -1,5 +1,10 @@
 <!-- app/views/visit_forms/_critere_fields.html.erb -->
 <div class="nested-fields">
-  <%= f.input :content, label: 'Contenu du critère' %>
+  <% if current_user == @visit_form_user %>
+    <%= f.input :question, label: 'Contenu du critère' %>
+  <% else %>
+    <p>Question : <%= f.object.question %></p>
+  <% end %>
+  <%= f.input :answer, label: 'Reponse au critère' %>
   <%= link_to_remove_association "Supprimer le critère", f %>
 </div>

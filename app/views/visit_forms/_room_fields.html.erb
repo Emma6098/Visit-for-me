@@ -1,0 +1,11 @@
+<% @visit_form.bookings.each do |booking|%>
+  <%if current_user == booking.user%>
+    <% @rooms.each do |room| %>
+      <div class="nested-fields">
+        <%= f.input :name, label: "Nom de la pièce #{room.id}"%>
+        <%= f.input :description, label: "Description de la pièce  #{room.id}" %>
+        <%= f.input :photos, as: :file, label: "Photo(s) de la pièce  #{room.id}"%>
+      </div>
+    <%end%>
+  <%end%>
+<%end%>

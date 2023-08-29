@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_29_100755) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_29_121121) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,14 +42,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_100755) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "answers", force: :cascade do |t|
-    t.text "content"
-    t.bigint "critere_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["critere_id"], name: "index_answers_on_critere_id"
-  end
-
   create_table "bookings", force: :cascade do |t|
     t.bigint "visit_form_id", null: false
     t.bigint "user_id", null: false
@@ -77,10 +69,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_100755) do
   end
 
   create_table "criteres", force: :cascade do |t|
-    t.text "content"
+    t.text "question"
     t.bigint "visit_form_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "answer"
     t.index ["visit_form_id"], name: "index_criteres_on_visit_form_id"
   end
 
@@ -124,7 +117,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_100755) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "answers", "criteres"
   add_foreign_key "bookings", "users"
   add_foreign_key "bookings", "visit_forms"
   add_foreign_key "chats", "chatrooms"

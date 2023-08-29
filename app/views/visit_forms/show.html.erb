@@ -1,13 +1,13 @@
 <h1>Coucou du show!</h1>
 <%= @visit_form.title %>
 <% @visit_form.criteres.each do |critere|%>
-<%= critere.content %>
+<%= critere.question %>
 <%end%>
 <% if current_user == @visit_form.user && @visit_form.bookings.exists?(visit_form_id: @visit_form.id) == false %>
   <%=link_to "Modifier le questionnaire de visite", edit_visit_form_path(@visit_form), class:"btn button-reserver"%>
   <%=link_to "Supprimer la visite", visit_form_path(@visit_form), data: {turbo_method: :delete, turbo_confirm: "Etes vous sûr de vouloir supprimer cette visite" }, class:"btn button-supprimer"%>
 <%elsif current_user.bookings.exists?(visit_form_id: @visit_form.id) %>
-  <%= link_to "Aller au compte-rendu", "javascript:void(0);", class: "btn button-reserver", disabled: true %>
+  <%= link_to "Aller au compte-rendu", edit_visit_form_path(@visit_form), class: "btn button-reserver" %>
 <% elsif  current_user == @visit_form.user && @visit_form.bookings.exists?(visit_form_id: @visit_form.id) %>
  <%= link_to "Votre visite a été réservée", "javascript:void(0);", class: "btn button-reserver", disabled: true %>
 <% else %>
