@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   resources :visit_forms do
     resources :bookings, only: [:create]
   end
-  resources :bookings, only: :destroy
+  resources :bookings, only: :destroy do
+    patch "accept", to: "pages#accept"
+    patch "reject", to: "pages#reject"
+  end
+
   # Defines the root path route ("/")
   # root "articles#index"
+  get "control", to: "pages#control"
 end
