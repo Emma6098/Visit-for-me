@@ -1,6 +1,17 @@
 class VisitFormsController < ApplicationController
   def index
-    @visit_forms = VisitForm.all
+    if params[:keyword]
+      @visit_forms = VisitForm.search_by_address(params[:keyword])
+    else
+      @visit_forms = VisitForm.all
+    end
+
+    @markers = @visit_forms.geocoded.map do |visit_form|
+      {
+        lat: visit_form.latitude,
+        lng: visit_form.longitude
+      }
+    end
   end
 
   def show

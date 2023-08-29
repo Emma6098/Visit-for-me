@@ -1,5 +1,20 @@
-<h1>Coucou de l'index!</h1>
-<%# <%= link_to "show", visit_form_path(visit_form)%>
+<div class="mb-4">
+    <%= form_tag visit_forms_path, method: :get, class: "form-inline" do %>
+      <div class="input-group">
+        <%= text_field_tag :keyword, params[:keyword], class: "form-control search", placeholder: "Rechercher par localisation" %>
+        <div class="input-group-append">
+          <%= submit_tag "Rechercher", class: "btn btn-search " %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div style="width: 100%; height: 600px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+
 <%= link_to "new", new_visit_form_path, class: "btn btn-flat" %>
 
 <% @visit_forms.each do |visit_form|%>
