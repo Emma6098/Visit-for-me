@@ -20,6 +20,10 @@ class VisitFormsController < ApplicationController
     @criteres = @visit_form.criteres
     @booking = Booking.new
     @rooms = Room.new
+    @marker = {
+      lat: @visit_form.latitude,
+      lng: @visit_form.longitude
+      }
   end
 
   def new

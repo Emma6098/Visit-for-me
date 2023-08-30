@@ -1,7 +1,17 @@
 <div class="bottom-menu">
-  <%= link_to "Trouver une visite", visit_forms_path, class: "nav-link" %>
-  <%= link_to "Ajouter une visite", new_visit_form_path, class: "nav-link" %>
-  <%=link_to "Guide" %>
-  <%=link_to "Messagerie"%>
-  <%= link_to "Tableau de bord", control_path, class: "nav-link"%>
+  <%= link_to visit_forms_path, class: "nav-link" do %>
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <% end %>
+  <%= link_to control_path, class: "nav-link" do %>
+  <i class="fa-solid fa-house"></i>
+  <% end %>
+  <%= link_to new_visit_form_path, class: "nav-link" do %>
+  <i class="fa-solid fa-plus"></i>
+  <% end %>
+  <%=link_to guide_path, class: "nav-link" do %>
+  <i class="fa-solid fa-book"></i>
+  <% end %>
+  <%=link_to do %>
+  <i class="fa-solid fa-envelope"></i>
+  <% end %>
 </div>
