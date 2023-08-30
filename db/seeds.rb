@@ -17,9 +17,9 @@ users = User.create([
 
 
 visit_forms = VisitForm.create!([
-  {user_id: User.first.id, title: "Visit1", address: "21 Rue Haxo Marseille", url: "url", rooms_number: 1},
-  {user_id: User.second.id, title: "Visit2", address: "21 Rue Haxo Marseille", url: "url", rooms_number: 2},
-  {user_id: User.third.id, title: "Visit3", address: "21 Rue Haxo Marseille", url: "url", rooms_number: 3}
+  {user_id: User.first.id, title: "Visit1", address: "21 Rue Haxo, Marseille", url: "url", rooms_number: 1},
+  {user_id: User.second.id, title: "Visit2", address: "22 Rue Haxo, Marseille", url: "url", rooms_number: 2},
+  {user_id: User.third.id, title: "Visit3", address: "23 Rue Haxo, Marseille", url: "url", rooms_number: 3}
 ])
 
 criteres = Critere.create!([
