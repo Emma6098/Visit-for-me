@@ -1,0 +1,17 @@
+<!-- app/views/visit_forms/_critere_fields.html.erb -->
+<div class="nested-fields">
+  <% @visit_form.bookings.each do |booking| %>
+    <div class="card-criteres">
+      <% if current_user == booking.user %>
+        <p>Critère : <b><%= f.object.question %></b></p>
+        <%= f.input :answer, label: false %>
+        <%="Photo(s):" %>
+        <br>
+        <label class="custom-file-upload">
+          <span class="plus-icon">+</span>
+          <%= f.file_field :photos, as: :file, class: 'hidden-file-input' %>
+        </label>
+      <% end %>
+    </div>
+  <% end %>
+</div>

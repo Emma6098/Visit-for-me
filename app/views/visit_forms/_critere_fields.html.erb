@@ -1,10 +1,13 @@
 <!-- app/views/visit_forms/_critere_fields.html.erb -->
 <div class="nested-fields">
-  <% if current_user == @visit_form_user %>
-    <%= f.input :question, label: 'Contenu du critère' %>
-  <% else %>
-    <p>Question : <%= f.object.question %></p>
-  <% end %>
-  <%= f.input :answer, label: 'Reponse au critère' %>
-  <%= link_to_remove_association "Supprimer le critère", f %>
+  <% @visit_form.bookings.each do |booking|%>
+      <% if current_user == booking.user %>
+        <p>Critère : <b><%= f.object.question %></p></b>
+        <%= f.input :answer, label: false %>
+      <% end %>
+  <%end%>
+  <%= f.input :question, label: 'Votre critère', placeholder: "Ex: Climatisation fonctionnelle", input_html: { class: 'custom-placeholder' } %>
+  <div class="delete-btn">
+    <%= link_to_remove_association "Supprimer le critère", f %>
+  </div>
 </div>
