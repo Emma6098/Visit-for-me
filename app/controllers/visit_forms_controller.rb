@@ -30,9 +30,7 @@ class VisitFormsController < ApplicationController
   def create
     @visit_form = VisitForm.new(visit_form_params)
     @visit_form.user = current_user
-    @visit_form.rooms_number.times do |room|
-      Room.create(visit_form: @visit_form)
-    end
+
     if @visit_form.save
       redirect_to @visit_form
     else
@@ -44,6 +42,7 @@ class VisitFormsController < ApplicationController
   def edit
     @visit_form = VisitForm.find(params[:id])
     @rooms = Room.all
+
     @bookings = Booking.all
     @visit_form_user = @visit_form.user
   end
