@@ -1,7 +1,21 @@
 <h1>Coucou du show!</h1>
 <%= @visit_form.title %>
-<%=link_to "Modifier le questionnaire de visite", edit_visit_form_path(@visit_form), class:"btn button-reserver"%>
-<%=link_to "Supprimer la visite", visit_form_path(@visit_form), data: {turbo_method: :delete, turbo_confirm: "Etes vous sûr de vouloir supprimer cette visite" }, class:"btn button-supprimer"%>
 <% @visit_form.criteres.each do |critere|%>
-<%= critere.content %>
+  <%= critere.question %>
 <%end%>
+<% if current_user == @visit_form.user && @visit_form.bookings.exists?(visit_form_id: @visit_form.id) == false %>
+  <%=link_to "Modifier le questionnaire de visite", edit_visit_form_path(@visit_form), class:"btn button-reserver"%>
+  <%=link_to "Supprimer la visite", visit_form_path(@visit_form), data: {turbo_method: :delete, turbo_confirm: "Etes vous sûr de vouloir supprimer cette visite" }, class:"btn button-supprimer"%>
+<%elsif current_user.bookings.exists?(visit_form_id: @visit_form.id) %>
+  <%= link_to "Aller au compte-rendu", edit_visit_form_path(@visit_form), class: "btn button-reserver" %>
+<% elsif  current_user == @visit_form.user && @visit_form.bookings.exists?(visit_form_id: @visit_form.id) %>
+ <%= link_to "Votre visite a été réservée", "javascript:void(0);", class: "btn button-reserver", disabled: true %>
+<% else %>
+  <%=link_to "Réserver la visite", visit_form_bookings_path(@visit_form), data: {turbo_method: :post, turbo_confirm: "Etes vous sûr de vouloir réserver cette formation?" }, class:"btn button-reserver"%>
+<%end%>
+
+  <div style="width: 100%; height: 600px;"
+    data-controller="map"
+    data-map-markers-value="<%= [@marker].to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>

@@ -1,22 +1,33 @@
-<h1>Modifie ta demande de visite !</h1>
-  <div class="containernewvisit">
-    <div class="row">
-        <%= simple_form_for [@visit_form], html: { class: 'visit-form' } do |f| %>
-          <%= f.input :title, label: 'Nom de la visite' %>
-          <%= f.input :url, label: 'Lien vers la visite' %>
-          <%= f.input :rooms_number, label: 'Nombre de pièces' %>
-          <%= f.input :address, label: 'Adresse de la visite'%>
-          <%= f.input :description, label: 'Description', input_html: { rows: 5 } %>
-          <%= f.simple_fields_for :criteres do |c|%>
-          <%= c.input :content %>
-          <% end %>
-          <%= f.button :submit, 'Ajouter la visite', class: 'btn-submit' %>
-        <% end %>
-    </div>
+<div class="containernewvisit">
+  <h1 class="titre-form">Complète le compte-rendu de visite !</h1>
+  <div class="form">
+      <%= simple_form_for [@visit_form], html: { class: 'visit-form' } do |f| %>
+        <div class="card-visit">
+          <h2><%= f.object.title%></h2>
+          <br>
+          <h6><b>Nombre de pièce :</b></h6>
+          <p><%= f.object.rooms_number%></p>
+          <h6><b>Localisation :</b></h6>
+          <p><%= f.object.address%></p>
+          <%if f.object.description.present? %>
+            <h6><b>Description du bien :</b></h6>
+            <p><%= f.object.description%></p>
+          <%end%>
+          <p class="truncate-text"><a href="<%= f.object.url %>"><%= f.object.url %></a></p>
+        </div>
+
+        <%= f.input :date, label: 'Date de la visite', as: :string,
+            input_html: { data: { controller: "datepicker" } } %>
+        <%= f.simple_fields_for :rooms do |room|%>
+          <%= render 'room_fields', f: room%>
+        <%end%>
+
+        <%= f.simple_fields_for :criteres do |critere|%>
+          <%= render 'critere_fields_edit', f: critere, visit_form_user: @visit_form_user %>
+        <%end%>
+
+        <%= f.button :submit, 'Envoyer le compte-rendu', class: 'btn-submit', onclick: "return confirm('Êtes-vous sûr de vouloir envoyer le compte-rendu ?');" %>
+
+      <% end %>
   </div>
-
-<%# ajout flatpicker
-, as: :string, input_html: { data: { controller: "datepicker" } } %>
-
-<%#  input_html: {data: {address_autocomplete_target: "address", mask_address_target: "deleteTexte"}, class: "d-none"},
-                wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+</div>

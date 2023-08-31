@@ -1,0 +1,122 @@
+.card-visit{
+
+}
+.card-room, .card-criteres{
+  margin-bottom: 20px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.flex-container-show{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.card-show-title {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 7px;
+  height: auto;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: rgb(109, 107, 107);
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+}
+
+.card-show {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 7px;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: rgb(109, 107, 107);
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.card-booking {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 7px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgb(109, 107, 107);
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+
+.card-home-one{
+  padding: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  background-color: white;
+  border-radius: 7px;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: rgb(109, 107, 107);
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.card-home{
+  margin-top: 10px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.boocked-visit {
+  position: relative !important;
+  overflow: hidden !important;
+  background-color: #D7D9D7 !important;
+}
+
+.booked-visit::before {
+  content: "Formation passée" !important;
+  display: none !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  color: white !important;
+  font-weight: bold;
+  font-size: 30px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  font-size: 18px !important;
+  font-size: 24px !important;
+  backdrop-filter: blur(2px) !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
+
+}

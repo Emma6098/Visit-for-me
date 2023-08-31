@@ -4,17 +4,16 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new
     @booking.visit_form = @visit_form
-
     @booking.user = current_user
-    @booking.statut = "en attente de validation"
+    @booking.status = "en attente de validation"
     @booking.save!
-    redirect_to booking_path(@booking)
+    redirect_to control_path(@booking)
   end
 
   def destroy
     @booking_delete = Booking.find(params[:id])
     @booking_delete.destroy
-    redirect_to profile_path, status: :see_other
+    redirect_to control_path, status: :see_other
   end
 
   private
