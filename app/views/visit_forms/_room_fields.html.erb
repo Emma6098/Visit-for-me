@@ -1,11 +1,21 @@
-<% @visit_form.bookings.each do |booking|%>
-  <%if current_user == booking.user%>
-    <% @rooms.each do |room| %>
-      <div class="nested-fields">
-        <%= f.input :name, label: "Nom de la pièce #{room.id}"%>
-        <%= f.input :description, label: "Description de la pièce  #{room.id}" %>
-        <%= f.input :photos, as: :file, label: "Photo(s) de la pièce  #{room.id}"%>
+<% @visit_form.bookings.each do |booking| %>
+  <% if current_user == booking.user %>
+    <% @visit_form.rooms_number.times do |room_index| %>
+      <div class="card-room">
+        <div class="nested-fields">
+          <%= f.input :"rooms_attributes[#{room_index}][title]", label: "Nom de la pièce #{room_index + 1}" %>
+          <%= f.input :"rooms_attributes[#{room_index}][description]", label: "Description de la pièce #{room_index + 1}" %>
+          <%="Photo(s) de la pièce #{room_index + 1} :" %>
+          <br>
+          <label class="custom-file-upload">
+            <span class="plus-icon">+</span>
+            <br>
+            <%= f.file_field :"rooms_attributes[#{room_index}][photos]", as: :file, class: 'hidden-file-input', label: "Photo(s) de la pièce #{room_index + 1}" %>
+          </label>
+        </div>
       </div>
-    <%end%>
-  <%end%>
-<%end%>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%# contenteditable à voir %>
