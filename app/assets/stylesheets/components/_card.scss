@@ -1,5 +1,5 @@
 
-.card-room, .card-criteres, .card-index{
+.card-room, .card-criteres, .card-index, .card-control{
   margin-bottom: 20px;
   background-color: white;
   padding: 20px;
@@ -9,7 +9,7 @@
 .card-index{
   position: relative;
   flex-direction: column;
-  height: 128px;
+  height: 148px;
   justify-content: center;
 }
 
@@ -148,4 +148,11 @@ a {
   backdrop-filter: blur(2px) !important;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
 
+}
+
+.card-control{
+  flex-direction: column;
+  width: 350px;
+  justify-content: center;
+  min-height: 131px;
 }

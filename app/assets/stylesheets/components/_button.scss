@@ -59,13 +59,12 @@
   border-radius: 4px;
   color: white;
   text-decoration: none;
-
 }
 
-.button-reserver:hover, #button-modifier:hover, .button-connect:hover{
-  background-color: #2e3e4e;
-  color:white
+.button-reserver{
+  margin-bottom: 30px;
 }
+
 
 .button-supprimer{
   background: #cf5656;
@@ -76,10 +75,6 @@
   display: inline-block;
   font-size: 14px;
   border-radius: 4px;
-  &:hover {
-    background: #6b2121;
-    color: white;
-  }
 }
 
 .btn-map{
@@ -94,4 +89,32 @@
 .bm{
   display: flex;
   justify-content: end;
+}
+
+.btn-delete {
+  margin-top: 5px;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: #cf5656;
+}
+
+.btn-accept{
+  color: white;
+  margin-top: 10px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: #1b5e22;
+  a{
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.btn-reject {
+  margin-top: 5px;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: #cf5656;
 }
