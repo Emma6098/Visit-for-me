@@ -1,26 +1,43 @@
-<div class="container">
-  <div class="mb-4">
+<div class="content" data-controller="map-toggle">
+  <div class="search">
       <%= form_tag visit_forms_path, method: :get, class: "form-inline" do %>
         <div class="input-group">
           <%= text_field_tag :keyword, params[:keyword], class: "form-control search", placeholder: "Rechercher par localisation" %>
           <div class="input-group-append">
-            <%= submit_tag "Rechercher", class: "btn btn-search " %>
+            <%= submit_tag "Rechercher", class: "btn btn-search" %>
           </div>
         </div>
       <% end %>
-    </div>
+  </div>
 
-    <div style="width: 100%; height: 600px;"
-      data-controller="map"
-      data-map-markers-value="<%= @markers.to_json %>"
-      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-    </div>
+  <div class="bm">
+    <h6 data-action="click->map-toggle#toggleMap" class="btn-map" data-map-toggle-target="showButton">Afficher sur la carte</h6>
+  </div>
+  <div class ="map d-none" data-map-toggle-target="mapContainer" style="width: 100%; height: 300px;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY']%>">
+  </div>
 
-  <%= link_to "new", new_visit_form_path, class: "btn btn-flat" %>
 
   <% @visit_forms.each do |visit_form|%>
-    <%= link_to visit_form_path(visit_form) do%>
-      <h3><%= visit_form.title %></h3>
-    <%end%>
-  <% end %>
+    <% unless visit_form.bookings.find { |booking| booking.status == "validé" } %>
+      <%= link_to visit_form_path(visit_form) do%>
+        <div class="card-index">
+          <div class="index-content">
+            <h3><%= truncate(visit_form.title, length: 18, omission: '...') %></h3>
+            <p class="address"><%= truncate(visit_form.address, length: 60, omission: '...') %></p>
+          </div>
+          <div class="index-avatar">
+            <% if visit_form.user.photo.attached? %>
+              <%= cl_image_tag visit_form.user.photo.key, class: "avatar-i avatar-absolut-i" %>
+            <% else %>
+              <img class="avatar-i avatar-absolut-i" src="https://res.cloudinary.com/dhvssfzz1/image/upload/v1693474293/avatar-_mtc5tf.jpg" alt="">
+            <% end%>
+          </div>
+        </div>
+      <%end%>
+    <% end %>
+  <%end%>
+
 </div>
