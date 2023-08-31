@@ -5,43 +5,33 @@
     <div><%= link_to "Ajouter une visite", new_visit_forms_path, class: "btn button-reserver" %></div>
   </div>
 <%else%>
-
-          <% current_user.visit_forms.each do |visit_form|%>
-
-              <%= link_to visit_form_path(visit_form), class: "text-decoration-none" do %>
-
-                    <h3 class="text-dark"><%=visit_form.title%></h3>
-
-                    <% visit_form.bookings.each do |booking|%>
-                      <p class="text-muted"><i><%= booking.status %></i></p>
-
-                        <%if booking.status == "en attente de validation" %>
-                          <p class="mt-3"><%=link_to "Accepter la réservation", booking_accept_path(booking), data: {turbo_method: :patch, turbo_confirm: "Etes vous sûr de vouloir accepter cette réservation?" }, class:"btn btn-accept text-decoration-none"%></p>
-                          <p class="mt-0"><%=link_to "Rejeter la réservation", booking_reject_path(booking), data: {turbo_method: :patch, turbo_confirm: "Etes vous sûr de vouloir rejeter cette réservation?" }, class:"btn btn-reject text-decoration-none"%></p>
-                        <% end %>
-                    <%end%>
-
-              <% end %>
-
+  <% current_user.visit_forms.each do |visit_form|%>
+      <%= link_to visit_form_path(visit_form), class: "text-decoration-none" do %>
+        <h3 class="text-dark"><%=visit_form.title%></h3>
+          <% visit_form.bookings.each do |booking|%>
+            <p class="text-muted"><i><%= booking.status %></i></p>
+            <%if booking.status == "en attente de validation" %>
+              <p class="mt-3"><%=link_to "Accepter la réservation", booking_accept_path(booking), data: {turbo_method: :patch, turbo_confirm: "Etes vous sûr de vouloir accepter cette réservation?" }, class:"btn btn-accept text-decoration-none"%></p>
+              <p class="mt-0"><%=link_to "Rejeter la réservation", booking_reject_path(booking), data: {turbo_method: :patch, turbo_confirm: "Etes vous sûr de vouloir rejeter cette réservation?" }, class:"btn btn-reject text-decoration-none"%></p>
+            <% end %>
           <%end%>
-
+    <% end %>
+  <%end%>
 <%end%>
 
 <h2>Mes visites prévues</h2>
-  <%if current_user.bookings.empty? %>
-    <div class="d-flex flex-column align-items-center">
-      <div class="mt-4 mb-4"><i> Vous n'êtes inscrit à aucune visite pour le moment</i></div>
-      <div><%= link_to "Trouver une visite", visit_forms_path, class: "btn button-reserver" %></div>
-    </div>
-  <%else%>
-        <%current_user.bookings.each do |booking|%>
-            <%= link_to visit_form_path(booking.visit_form), class:" text-decoration-none" do %>
-
-                    <h3 class="text-dark"><%=booking.visit_form.title%></h3>
-                    <p class="text-muted"><%= booking.visit_form.user.first_name %></p>
-                    <p class="text-muted"><i><%= booking.status %></i></p>
-                    <div class="btn-flex"><%=link_to "Supprimer cette réservation", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Etes vous sûr de vouloir supprimer cette réservation?" }, class: "btn btn-delete"%></div>
-
-            <%end%>
-            <%end%>
-            <%end%>
+<%if current_user.bookings.empty? %>
+  <div class="d-flex flex-column align-items-center">
+    <div class="mt-4 mb-4"><i> Vous n'êtes inscrit à aucune visite pour le moment</i></div>
+    <div><%= link_to "Trouver une visite", visit_forms_path, class: "btn button-reserver" %></div>
+  </div>
+<%else%>
+  <%current_user.bookings.each do |booking|%>
+    <%= link_to visit_form_path(booking.visit_form), class:" text-decoration-none" do %>
+      <h3 class="text-dark"><%=booking.visit_form.title%></h3>
+      <p class="text-muted"><%= booking.visit_form.user.first_name %></p>
+      <p class="text-muted"><i><%= booking.status %></i></p>
+      <div class="btn-flex"><%=link_to "Supprimer cette réservation", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Etes vous sûr de vouloir supprimer cette réservation?" }, class: "btn btn-delete"%></div>
+    <%end%>
+  <%end%>
+<%end%>
