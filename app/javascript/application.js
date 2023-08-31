@@ -5,9 +5,7 @@ import "@popperjs/core"
 import "bootstrap"
 import "jquery"
 import "@nathanvda/cocoon"
-<<<<<<< HEAD
 import "@rails/actioncable"
-=======
 import "mapbox-gl"
 import "@mapbox/mapbox-gl-geocoder"
 
@@ -31,4 +29,3 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
->>>>>>> 82b651ddce831118e31b149b9d265c76f24ec197
