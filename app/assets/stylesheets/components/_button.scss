@@ -47,3 +47,37 @@
     color: rgb(165, 160, 160);
    }
 }
+
+
+.button-reserver, .button-modifier, .button-connect{
+  background-color: #2f455c;
+  border: none;
+  padding: 12px 15px;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 4px;
+  color: white;
+  text-decoration: none;
+
+}
+
+.button-reserver:hover, #button-modifier:hover, .button-connect:hover{
+  background-color: #2e3e4e;
+  color:white
+}
+
+.button-supprimer{
+  background: #cf5656;
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 4px;
+  &:hover {
+    background: #6b2121;
+    color: white;
+  }
+}
