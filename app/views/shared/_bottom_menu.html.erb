@@ -2,6 +2,6 @@
   <%= link_to "Trouver une visite", visit_forms_path, class: "nav-link" %>
   <%= link_to "Ajouter une visite", new_visit_form_path, class: "nav-link" %>
   <%=link_to "Guide" %>
-  <%=link_to "Messagerie"%>
+  <%=link_to "Messagerie", chatroom_path(@chatroom), class: "nav-link" %>
   <%= link_to "Mes visites"%>
 </div>

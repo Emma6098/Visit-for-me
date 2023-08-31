@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   resources :bookings, only: :destroy
   # Defines the root path route ("/")
   # root "articles#index"
+  resources :chatrooms, only: :show do
+    resources :chats, only: :create
+end
 end

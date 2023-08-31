@@ -17,7 +17,7 @@
           <div class="div-avatar">
           <a href="#" class="avatar avatar-nav" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <% if current_user.photo.attached? %>
-              <%= cl_image_tag current_user.photo.key, class: "avatar avatar-nav" %>
+              <%# {<%= cl_image_tag current_user.photo.key, class: "avatar avatar-nav" %>
             <% else %>
             <img src="https://res.cloudinary.com/dhvssfzz1/image/upload/v1693230173/avatar-without-img_jwenhi.png" class="avatar avatar-nav" alt= "dropdown menu">
             <% end%>
