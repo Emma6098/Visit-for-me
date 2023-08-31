@@ -66,7 +66,18 @@
   display: none;
 }
 
+.custom-input {
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  width: 100%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 4px;
+  border-radius: var(--bs-border-radius);
+}
 
+textarea:focus, input:focus{
+  outline: none;
+}
 // .edit-room-name-trigger {
 //   font-weight: bold;
 //   border:0.5px rgb(186, 180, 180) solid;

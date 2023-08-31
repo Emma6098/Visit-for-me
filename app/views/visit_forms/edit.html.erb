@@ -1,33 +1,47 @@
-<div class="containernewvisit">
-  <h1 class="titre-form">Complète le compte-rendu de visite !</h1>
-  <div class="form">
-      <%= simple_form_for [@visit_form], html: { class: 'visit-form' } do |f| %>
-        <div class="card-visit">
-          <h2><%= f.object.title%></h2>
-          <br>
-          <h6><b>Nombre de pièce :</b></h6>
-          <p><%= f.object.rooms_number%></p>
-          <h6><b>Localisation :</b></h6>
-          <p><%= f.object.address%></p>
-          <%if f.object.description.present? %>
-            <h6><b>Description du bien :</b></h6>
-            <p><%= f.object.description%></p>
+<div class="content">
+  <div class="containernewvisit">
+    <h1 class="titre-form">Complète le compte-rendu de visite !</h1>
+    <div class="form">
+        <%= simple_form_for [@visit_form], html: { class: 'visit-form' } do |f| %>
+          <div class="card-visit">
+            <h2><%= f.object.title%></h2>
+            <br>
+            <h6><b>Nombre de pièce :</b></h6>
+            <p><%= f.object.rooms_number%></p>
+            <h6><b>Localisation :</b></h6>
+            <p><%= f.object.address%></p>
+            <%if f.object.description.present? %>
+              <h6><b>Description du bien :</b></h6>
+              <p><%= f.object.description%></p>
+            <%end%>
+            <p class="truncate-text"><a href="<%= f.object.url %>"><%= f.object.url %></a></p>
+          </div>
+
+          <%= f.input :date, label: 'Date de la visite', as: :string,
+          input_html: { data: { controller: "datepicker" } } %>
+
+          <% @visit_form.rooms.each do |room|  %>
+            <h4>Pièce <%= room.id %></h4>
+            <div class="card-room">
+              <div class="nested-fields">
+                <input class="custom-input" type="text" name="rooms_names[<%= room.id %>]" placeholder="Nom de la pièce" value="<%= room.name %>" label="Nom de la pièce" />
+                <input class="custom-input" type="text" name="rooms_descriptions[<%= room.id %>]" placeholder="Description de la pièce" value="<%= room.description %>" label="Description de la pièce" />
+              </div>
+              <label class="custom-file-upload">
+              <span class="plus-icon">+</span>
+              <br>
+              <%= f.file_field :"rooms_attributes[#{room.id}][photos]", as: :file, class: 'hidden-file-input', label: "Photo(s) de la pièce #{room.id + 1}" %>
+            </label>
+            </div>
+          <% end %>
+
+          <%= f.simple_fields_for :criteres do |critere|%>
+            <%= render 'critere_fields_edit', f: critere, visit_form_user: @visit_form_user %>
           <%end%>
-          <p class="truncate-text"><a href="<%= f.object.url %>"><%= f.object.url %></a></p>
-        </div>
 
-        <%= f.input :date, label: 'Date de la visite', as: :string,
-            input_html: { data: { controller: "datepicker" } } %>
-        <%= f.simple_fields_for :rooms do |room|%>
-          <%= render 'room_fields', f: room%>
-        <%end%>
+          <%= f.button :submit, 'Envoyer le compte-rendu', class: 'btn-submit', onclick: "return confirm('Êtes-vous sûr de vouloir envoyer le compte-rendu ?');" %>
 
-        <%= f.simple_fields_for :criteres do |critere|%>
-          <%= render 'critere_fields_edit', f: critere, visit_form_user: @visit_form_user %>
-        <%end%>
-
-        <%= f.button :submit, 'Envoyer le compte-rendu', class: 'btn-submit', onclick: "return confirm('Êtes-vous sûr de vouloir envoyer le compte-rendu ?');" %>
-
-      <% end %>
+        <% end %>
+    </div>
   </div>
 </div>

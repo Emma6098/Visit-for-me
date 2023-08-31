@@ -1,3 +1,4 @@
+<div class="content">
 <h2>Mes demandes de visites</h2>
 <%if current_user.visit_forms.empty? %>
   <div class="d-flex flex-column align-items-center ">
@@ -34,14 +35,13 @@
       <div><%= link_to "Trouver une visite", visit_forms_path, class: "btn button-reserver" %></div>
     </div>
   <%else%>
-        <%current_user.bookings.each do |booking|%>
-            <%= link_to visit_form_path(booking.visit_form), class:" text-decoration-none" do %>
-
-                    <h3 class="text-dark"><%=booking.visit_form.title%></h3>
-                    <p class="text-muted"><%= booking.visit_form.user.first_name %></p>
-                    <p class="text-muted"><i><%= booking.status %></i></p>
-                    <div class="btn-flex"><%=link_to "Supprimer cette réservation", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Etes vous sûr de vouloir supprimer cette réservation?" }, class: "btn btn-delete"%></div>
-
-            <%end%>
-            <%end%>
-            <%end%>
+    <%current_user.bookings.each do |booking|%>
+      <%= link_to visit_form_path(booking.visit_form), class:" text-decoration-none" do %>
+        <h3 class="text-dark"><%=booking.visit_form.title%></h3>
+        <p class="text-muted"><%= booking.visit_form.user.first_name %></p>
+        <p class="text-muted"><i><%= booking.status %></i></p>
+        <div class="btn-flex"><%=link_to "Supprimer cette réservation", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Etes vous sûr de vouloir supprimer cette réservation?" }, class: "btn btn-delete"%></div>
+        <%end%>
+      <%end%>
+    <%end%>
+</div>

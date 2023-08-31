@@ -1,4 +1,5 @@
 class VisitForm < ApplicationRecord
+  has_many :rooms
   has_many :bookings
   belongs_to :user
   has_many :criteres, dependent: :destroy
@@ -19,6 +20,12 @@ class VisitForm < ApplicationRecord
   using: {
     tsearch: { prefix: true } # <-- now `superman batm` will return something!
   }
+
+  def create_rooms
+    self.rooms_number.times do |room|
+      Room.create(visit_form: self)
+    end
+  end
 
 
 end
