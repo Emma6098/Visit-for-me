@@ -11,3 +11,11 @@
   z-index: 1;
   background-color: #687BA7;
  }
+
+ .form-control{
+  background-color: white;
+ }
+ .form-control::placeholder {
+  font-style: italic;
+  font-size: smaller;
+}
