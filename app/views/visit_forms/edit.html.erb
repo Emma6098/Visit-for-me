@@ -1,3 +1,4 @@
+
 <div class="content">
   <div class="containernewvisit">
     <h1 class="titre-form">Complète le compte-rendu de visite !</h1>
@@ -19,6 +20,7 @@
 
           <%= f.input :date, label: 'Date de la visite', as: :string,
           input_html: { data: { controller: "datepicker" } } %>
+
 
           <% @visit_form.rooms.each do |room|  %>
             <h4>Pièce <%= room.id %></h4>

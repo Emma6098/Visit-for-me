@@ -1,18 +1,13 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to '/', class: "navbar-brand" do %>
-      <img src="https://res.cloudinary.com/dhvssfzz1/image/upload/v1693230173/avatar-without-img_jwenhi.png" alt="">
-    <% end %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div>
+      <%= link_to '/', class: "navbar-brand" do %>
+        <img src="https://res.cloudinary.com/dhvssfzz1/image/upload/v1693478549/Clara_HERKERT_I_have_a_specific_concept_in_mind_that_centers_ar_bee765b3-7901-4caf-8b30-4f6dfb62a6d8_r8wvtf.png" class="logo" alt="">
+      <% end %>
+    </div>
+    <div>
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active">
-
-            <%# <%= link_to "Tableau de bord", profile_path, class: "nav-link" %>
-          </li>
           <li class="nav-item dropdown">
           <div class="div-avatar">
           <a href="#" class="avatar avatar-nav" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
