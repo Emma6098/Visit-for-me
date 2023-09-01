@@ -2,11 +2,12 @@
   <h1>Guide de Visite : Location Immobilière</h1>
 
   <p>Lors de la visite d'un bien, il est essentiel de garder à l'esprit certains points clés pour s'assurer que le bien répond à vos besoins et attentes :</p>
-  <div class="warpper">
+  <div class="warpper" data-controller="arrow-toggle">
     <div class="collapsible">
-      <input type="checkbox" id="collapsible-head1">
+      <input type="checkbox" id="collapsible-head1"
+      data-action="click->arrow-toggle#toggle">
       <label for="collapsible-head1">Localisation et Environnement
-      <i class="fa-solid fa-chevron-down"></i></label>
+      <i class="fa-solid fa-chevron-down" data-arrow-toggle-target="arrow"></i></label>
       <div class="collapsible-text">
         <p>Proximité des commerces, écoles, transports en commun.</p>
         <p>Qualité du voisinage : calme, sécurité, aspect sociodémographique.</p>
@@ -15,11 +16,12 @@
     </div>
   </div>
 
-  <div class="warpper">
+  <div class="warpper" data-controller="arrow-toggle">
     <div class="collapsible">
-      <input type="checkbox" id="collapsible-head2">
+      <input type="checkbox" id="collapsible-head2"
+      data-action="click->arrow-toggle#toggle">
       <label for="collapsible-head2">Extérieur du Bien :
-      <i class="fa-solid fa-chevron-down"></i></label>
+      <i class="fa-solid fa-chevron-down" data-arrow-toggle-target="arrow"></i></label>
       <div class="collapsible-text">
         <p>État général de la façade et des parties communes.</p>
         <p>Présence d'un espace extérieur : balcon, terrasse, jardin.</p>
@@ -28,11 +30,12 @@
     </div>
   </div>
 
-  <div class="warpper">
+  <div class="warpper" data-controller="arrow-toggle">
     <div class="collapsible">
-      <input type="checkbox" id="collapsible-head3">
+      <input type="checkbox" id="collapsible-head3"
+      data-action="click->arrow-toggle#toggle">
       <label for="collapsible-head3">Intérieur du Bien :
-      <i class="fa-solid fa-chevron-down"></i></label>
+      <i class="fa-solid fa-chevron-down" data-arrow-toggle-target="arrow"></i></label>
       <div class="collapsible-text">
         <p>Surface et distribution des pièces.</p>
         <p>État général : propreté, état des peintures et sols.</p>
@@ -43,11 +46,12 @@
     </div>
   </div>
 
-  <div class="warpper">
+  <div class="warpper" data-controller="arrow-toggle">
     <div class="collapsible">
-      <input type="checkbox" id="collapsible-head4">
+      <input type="checkbox" id="collapsible-head4"
+      data-action="click->arrow-toggle#toggle">
       <label for="collapsible-head4">Équipements et Confort :
-      <i class="fa-solid fa-chevron-down"></i></label>
+      <i class="fa-solid fa-chevron-down" data-arrow-toggle-target="arrow"></i></label>
       <div class="collapsible-text">
         <p>Type de chauffage : individuel, collectif, type d'énergie.</p>
         <p>État des équipements sanitaires : salle de bain, toilettes.</p>
@@ -57,11 +61,12 @@
     </div>
   </div>
 
-  <div class="warpper">
+  <div class="warpper" data-controller="arrow-toggle">
     <div class="collapsible">
-      <input type="checkbox" id="collapsible-head5">
+      <input type="checkbox" id="collapsible-head5"
+      data-action="click->arrow-toggle#toggle">
       <label for="collapsible-head5">Sécurité :
-      <i class="fa-solid fa-chevron-down"></i></label>
+      <i class="fa-solid fa-chevron-down" data-arrow-toggle-target="arrow"></i></label>
       <div class="collapsible-text">
         <p>Présence de détecteurs de fumée.</p>
         <p>État des serrures, présence d'une porte blindée.</p>
@@ -70,11 +75,12 @@
     </div>
   </div>
 
-  <div class="warpper">
+  <div class="warpper" data-controller="arrow-toggle">
     <div class="collapsible">
-      <input type="checkbox" id="collapsible-head6">
+      <input type="checkbox" id="collapsible-head6"
+      data-action="click->arrow-toggle#toggle">
       <label for="collapsible-head6">Aspects Financiers :
-      <i class="fa-solid fa-chevron-down"></i></label>
+      <i class="fa-solid fa-chevron-down" data-arrow-toggle-target="arrow"></i></label>
       <div class="collapsible-text">
         <p>Montant du loyer et des charges.</p>
         <p>Détails des charges : incluses ou non dans le loyer, ce qu'elles couvrent.</p>
@@ -83,11 +89,12 @@
     </div>
   </div>
 
-  <div class="warpper">
+  <div class="warpper" data-controller="arrow-toggle">
     <div class="collapsible">
-      <input type="checkbox" id="collapsible-head7">
+      <input type="checkbox" id="collapsible-head7"
+      data-action="click->arrow-toggle#toggle">
       <label for="collapsible-head7">Détails Contractuels :
-      <i class="fa-solid fa-chevron-down"></i></label>
+      <i class="fa-solid fa-chevron-down" data-arrow-toggle-target="arrow"></i></label>
       <div class="collapsible-text">
         <p>Durée du bail.</p>
         <p>Conditions de résiliation.</p>
@@ -96,11 +103,12 @@
     </div>
   </div>
 
-  <div class="warpper">
+  <div class="warpper" data-controller="arrow-toggle">
     <div class="collapsible">
-      <input type="checkbox" id="collapsible-head8">
+      <input type="checkbox" id="collapsible-head8"
+      data-action="click->arrow-toggle#toggle">
       <label for="collapsible-head8">Questions à Poser :
-      <i class="fa-solid fa-chevron-down"></i></label>
+      <i class="fa-solid fa-chevron-down" data-arrow-toggle-target="arrow"></i></label>
       <div class="collapsible-text">
         <p>Quelle est la date de disponibilité du bien?</p>
         <p>Y a-t-il eu des incidents récents dans l'immeuble ou le quartier ?</p>

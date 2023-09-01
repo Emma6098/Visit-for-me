@@ -42,8 +42,6 @@ display: none;
 }
 
 .collapsible input:checked + label:after{
-  transform: rotate();
-
 }
 
 .collapsible-text{
@@ -63,7 +61,6 @@ display: none;
   background: #fff;
   opacity: 1;
   top: 0
-
 }
 
 .collapsible-text p{
@@ -75,4 +72,12 @@ display: none;
 
 p{
   margin-bottom: 4px;
+}
+
+.flip{
+  transform: rotate(180deg);
+}
+
+.fa-chevron-down{
+  transition: 0.3s ease;
 }

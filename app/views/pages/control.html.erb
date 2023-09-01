@@ -1,4 +1,6 @@
+
 <div class="content control-content">
+
 
   <div class="visites">
     <h2>Mes demandes de visites</h2>
@@ -46,7 +48,7 @@
     <h2>Mes visites prévues</h2>
     <%if current_user.bookings.empty? %>
       <div class="empty"><i> Vous n'êtes inscrit à aucune visite pour le moment</i></div>
-      <div><%= link_to "Trouver une visite", visit_forms_path, class: "btn button-reserver" %></div>
+    <div><%= link_to "Trouver une visite", visit_forms_path, class: "btn button-reserver" %></div>
 
     <%else%>
       <div class="card-control">
