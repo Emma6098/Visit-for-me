@@ -1,6 +1,6 @@
 <div class="content">
 
-  <h1><%= @visit_form.title %></h1>
+  <h1 class = "show-title"><%= @visit_form.title %></h1>
 
   <div class="card-show-title">
     <h3>Adresse du bien: <%= @visit_form.address %></h3>
@@ -18,13 +18,13 @@
   <%end%>
 
   <% @visit_form.rooms.each do |room|%>
-    <% if room.name.present? || room.description.present? || room.photos.attached?%>
+    <% if room.name.present? || room.description.present? %>
       <div class="card-show-title">
-        <%= room.name %>
-        <%= room.description %>
-        <% room.photos.each do |photo|%>
-          <%= cl_image_tag room.photo.key %>
-        <%end%>
+        <b><%= room.name %></b>
+        <p><%= room.description %></p>
+        <% room.photos.each do |photo| %>
+        <%= image_tag photo, class: "rooms-photos"%>
+        <% end %>
       </div>
     <%end%>
   <%end%>
