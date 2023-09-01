@@ -1,9 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
-
   position: fixed;
-  overflow: hidden !important;
   top: 0;
   width: 100%;
   z-index: 10;
@@ -15,4 +13,15 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.dropdown-avatar{
+  position: absolute !important;
+  top: 100%;
+  right: 0;
+  z-index: 999 !important;
+}
+
+.div-avatar {
+  position: relative;
 }

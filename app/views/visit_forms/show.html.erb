@@ -1,21 +1,58 @@
-<h1>Coucou du show!</h1>
-<%= @visit_form.title %>
-<% @visit_form.criteres.each do |critere|%>
-  <%= critere.question %>
-<%end%>
-<% if current_user == @visit_form.user && @visit_form.bookings.exists?(visit_form_id: @visit_form.id) == false %>
-  <%=link_to "Modifier le questionnaire de visite", edit_visit_form_path(@visit_form), class:"btn button-reserver"%>
-  <%=link_to "Supprimer la visite", visit_form_path(@visit_form), data: {turbo_method: :delete, turbo_confirm: "Etes vous sûr de vouloir supprimer cette visite" }, class:"btn button-supprimer"%>
-<%elsif current_user.bookings.exists?(visit_form_id: @visit_form.id) %>
-  <%= link_to "Aller au compte-rendu", edit_visit_form_path(@visit_form), class: "btn button-reserver" %>
-<% elsif  current_user == @visit_form.user && @visit_form.bookings.exists?(visit_form_id: @visit_form.id) %>
- <%= link_to "Votre visite a été réservée", "javascript:void(0);", class: "btn button-reserver", disabled: true %>
-<% else %>
-  <%=link_to "Réserver la visite", visit_form_bookings_path(@visit_form), data: {turbo_method: :post, turbo_confirm: "Etes vous sûr de vouloir réserver cette formation?" }, class:"btn button-reserver"%>
-<%end%>
+<div class="content">
 
-  <div style="width: 100%; height: 600px;"
+  <h1 class = "show-title"><%= @visit_form.title %></h1>
+
+  <div class="card-show-title">
+    <h3>Adresse du bien: <%= @visit_form.address %></h3>
+    <p class="truncate-text">Lien vers l'annonce <a href="<%= @visit_form.url %>"></a></p>
+    <p>Nombre de pièces: <%= @visit_form.rooms_number %></p>
+  </div>
+
+  <% @visit_form.criteres.each do |critere|%>
+    <% if critere.question.present? || critere.answer.present?%>
+      <div class="card-show-title">
+        <p>critère: <%= critere.question %></p>
+        <p>réponse: <%= critere.answer %></p>
+      </div>
+    <%end%>
+  <%end%>
+
+  <% @visit_form.rooms.each do |room|%>
+    <% if room.name.present? || room.description.present? %>
+      <div class="card-show-title">
+        <b><%= room.name %></b>
+        <p><%= room.description %></p>
+        <% room.photos.each do |photo| %>
+        <%= image_tag photo, class: "rooms-photos"%>
+        <% end %>
+      </div>
+    <%end%>
+  <%end%>
+
+
+  <div class="margin-div">
+    <% if current_user == @visit_form.user && @visit_form.bookings.exists?(visit_form_id: @visit_form.id) == false %>
+      <%=link_to "Supprimer la visite", visit_form_path(@visit_form), data: {turbo_method: :delete, turbo_confirm: "Etes vous sûr de vouloir supprimer cette visite" }, class:"btn button-supprimer"%>
+    <%elsif current_user.bookings.exists?(visit_form_id: @visit_form.id) %>
+      <% @visit_form.bookings.each do |booking| %>
+        <% if booking.status == "validé" %>
+          <%= link_to "Aller au compte-rendu", edit_visit_form_path(@visit_form), class: "btn button-reserver" %>
+        <%elsif booking.status == "en attente de validation"%>
+          <div class="btn button-reserver">En attente</div>
+        <%else%>
+          <div class="btn button-reserver">Rejeté</div>
+        <%end%>
+    <%end%>
+    <% elsif  current_user == @visit_form.user && @visit_form.bookings.exists?(visit_form_id: @visit_form.id) %>
+    <div class="btn button-reserver">Votre visite a été réservée</div>
+    <% else %>
+      <%=link_to "Réserver la visite", visit_form_bookings_path(@visit_form), data: {turbo_method: :post, turbo_confirm: "Etes vous sûr de vouloir réserver cette formation?" }, class:"btn button-reserver"%>
+    <%end%>
+  </div>
+
+  <div style="width: 100%; height: 350px; border-radius: 7px;"
     data-controller="map"
     data-map-markers-value="<%= [@marker].to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
+</div>

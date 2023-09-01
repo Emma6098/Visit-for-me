@@ -1,0 +1,6 @@
+<%= link_to visit_form_path(visit_form) do%>
+  <div class="popup-map">
+    <h3><%= truncate(visit_form.title, length: 18, omission: '...') %></h3>
+    <p class="address"><%= truncate(visit_form.address, length: 60, omission: '...') %></p>
+  </div>
+<%end%>

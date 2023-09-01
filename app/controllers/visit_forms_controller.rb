@@ -6,10 +6,13 @@ class VisitFormsController < ApplicationController
       @visit_forms = VisitForm.all
     end
 
+    @booked_visits = Booking.pluck(:visit_form_id)
+
     @markers = @visit_forms.geocoded.map do |visit_form|
       {
         lat: visit_form.latitude,
-        lng: visit_form.longitude
+        lng: visit_form.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {visit_form: visit_form})
       }
     end
   end
@@ -17,9 +20,11 @@ class VisitFormsController < ApplicationController
   def show
     @visit_form = VisitForm.find(params[:id])
     @criteres = Critere.all
+    @rooms = Room.all
     @criteres = @visit_form.criteres
+    @rooms = @visit_form.rooms
     @booking = Booking.new
-    @rooms = Room.new
+    # @rooms = Room.new
     @marker = {
       lat: @visit_form.latitude,
       lng: @visit_form.longitude
@@ -37,6 +42,7 @@ class VisitFormsController < ApplicationController
 
     if @visit_form.save
       redirect_to @visit_form
+      @visit_form.create_rooms
     else
       render :new, status: :unprocessable_entity
     end
@@ -54,6 +60,30 @@ class VisitFormsController < ApplicationController
   def update
     @visit_form = VisitForm.find(params[:id])
     @visit_form.update(visit_form_params)
+
+    params[:rooms_names].each do |room_params|
+      room_id = room_params[0]
+      room_name = room_params[1]
+      r = Room.find(room_id)
+      r.update(name: room_name)
+      r.save!
+    end
+
+    params[:rooms_descriptions].each do |room_params|
+      room_id = room_params[0]
+      room_description = room_params[1]
+      r = Room.find(room_id)
+      r.update(description: room_description)
+      r.save!
+    end
+
+    params[:rooms_photos].each do |room_params|
+      room_id = room_params[0]
+      room_photos = room_params[1]
+      r = Room.find(room_id)
+      r.update(photos: room_photos)
+      r.save!
+    end
     redirect_to visit_form_path(@visit_form)
   end
 
@@ -66,6 +96,6 @@ class VisitFormsController < ApplicationController
   private
 
   def visit_form_params
-    params.require(:visit_form).permit(:title, :address, :longitude, :latitude, :description, :url, :date, :rooms_number, criteres_attributes: [:id, :question, :answer, :_destroy], rooms_attributes: [:id, :description, :name])
+    params.require(:visit_form).permit(:title, :address, :longitude, :latitude, :description, :url, :date, :rooms_number, criteres_attributes: [:id, :question, :answer, :_destroy, :photos], rooms_attributes: [:id, :description, :name, :photos])
   end
 end
