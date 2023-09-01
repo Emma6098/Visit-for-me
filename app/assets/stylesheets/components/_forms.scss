@@ -9,7 +9,6 @@
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
-  padding: 30px;
   box-sizing: border-box;
   border-radius: 10px;
 }
@@ -61,6 +60,14 @@
 
 .hidden-file-input {
   display: none;
+}
+
+.photo-edit{
+  margin-top: 10px;
+  margin-right: 10px;
+  width: 59.2px;
+  height: 59.2px;
+  border-radius: 5px;
 }
 
 .custom-input {

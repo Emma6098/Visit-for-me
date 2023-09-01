@@ -76,6 +76,14 @@ class VisitFormsController < ApplicationController
       r.update(description: room_description)
       r.save!
     end
+
+    params[:rooms_photos].each do |room_params|
+      room_id = room_params[0]
+      room_photos = room_params[1]
+      r = Room.find(room_id)
+      r.update(photos: room_photos)
+      r.save!
+    end
     redirect_to visit_form_path(@visit_form)
   end
 
