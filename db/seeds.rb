@@ -27,3 +27,5 @@ criteres = Critere.create!([
   {visit_form_id: VisitForm.second.id, question:"blabla2"},
   {visit_form_id: VisitForm.third.id, question:"blabla3"}
 ])
+
+chatroom = Chatroom.create!({name:" la chatroom de la seed"})
