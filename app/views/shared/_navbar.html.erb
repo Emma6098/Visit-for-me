@@ -17,7 +17,7 @@
             <img src="https://res.cloudinary.com/dhvssfzz1/image/upload/v1693230173/avatar-without-img_jwenhi.png" class="avatar avatar-nav" alt= "dropdown menu">
             <% end%>
           </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu dropdown-menu-end dropdown-avatar" aria-labelledby="navbarDropdown">
               <%= link_to "Déconnexion", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </div>
