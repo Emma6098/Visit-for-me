@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     resources :chats, only: :create
 end
   get "control", to: "pages#control"
+  get "profil", to: "pages#profil"
   get "guide", to:"pages#guide"
 end
