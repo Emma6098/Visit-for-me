@@ -1,0 +1,17 @@
+.current_user_chat {
+  background-color: rgb(235, 134, 134);
+  text-align: right;
+  box-shadow: -4px 4px 1px black;
+
+}
+
+.other_user_chat {
+  background-color: rgb(134, 200, 235);
+  box-shadow: 4px 4px 4px black;
+}
+
+.chat-box {
+  border-radius: 4px;
+  padding: 4px;
+  margin-top: 10px;
+}

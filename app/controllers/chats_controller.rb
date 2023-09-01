@@ -4,11 +4,12 @@ class ChatsController < ApplicationController
     @chat = Chat.new(message_params)
     @chat.chatroom = @chatroom
     @chat.user = current_user
-    if @chat.saved_change_to_chatroom_id.broadcast_to(
-      @chatroom,
-      render_to_string(partial: "chat", locals: {chat: @chat})
-    )
-      redirect_to chatroom_path(@chatroom)
+    if @chat.save
+      ChatroomChannel.broadcast_to(
+        @chatroom,
+        render_to_string(partial: "chat", locals: { chat: @chat })
+      )
+      head :ok
     else
       render "chatrooms/show", status: :unprocessable_entity
     end

@@ -1,12 +1,19 @@
-<div class="chats" data-chatroom-subscription-target="chats">
-  <% @chatroom.chats.each do |chat| %>
-    <%= render "chats/chat", chat: chat %>
-  <% end %>
-</div>
 <div id="chat-<%= chat.id %>">
-  <small>
-    <strong><%= chat.user.nickname %></strong>
-    <i><%= chat.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-  </small>
-  <p><%= chat.content %></p>
+  <% if chat.user == current_user %>
+    <div class="current_user_chat chat-box">
+      <small>
+        <p><%= chat.created_at.strftime("%a %b %e at %l:%M %p") %></p>
+      </small>
+      <strong><%= chat.user.first_name %></strong>
+      <p><%= chat.content %></p>
+    </div>
+  <% else %>
+    <div class="other_user_chat chat-box">
+      <small>
+        <p><%= chat.created_at.strftime("%a %b %e at %l:%M %p") %></p>
+      </small>
+      <strong><%= chat.user.first_name %></strong>
+      <p><%= chat.content %></p>
+    </div>
+  <% end %>
 </div>
