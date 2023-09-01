@@ -5,6 +5,7 @@ import "@popperjs/core"
 import "bootstrap"
 import "jquery"
 import "@nathanvda/cocoon"
+import "@rails/actioncable"
 import "mapbox-gl"
 import "@mapbox/mapbox-gl-geocoder"
 
