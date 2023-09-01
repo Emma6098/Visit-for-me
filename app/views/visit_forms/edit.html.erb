@@ -11,16 +11,14 @@
             <p><%= f.object.rooms_number%></p>
             <h6><b>Localisation :</b></h6>
             <p><%= f.object.address%></p>
-            <%if f.object.description.present? %>
-              <h6><b>Description du bien :</b></h6>
-              <p><%= f.object.description%></p>
-            <%end%>
             <p class="truncate-text"><a href="<%= f.object.url %>"><%= f.object.url %></a></p>
           </div>
 
           <%= f.input :date, label: 'Date de la visite', as: :string,
           input_html: { data: { controller: "datepicker" } } %>
 
+          <h6><b>Description du bien :</b></h6>
+          <%= f.input :description, label: false, input_html: { rows: 3 }, placeholder: "", input_html: { class: 'custom-placeholder' }%>
 
           <% @visit_form.rooms.each do |room|  %>
             <h4>Pièce <%= room.id %></h4>
