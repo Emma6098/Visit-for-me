@@ -23,8 +23,10 @@
           <h6><b>Description du bien :</b></h6>
           <%= f.input :description, label: false, input_html: { rows: 3 }, placeholder: "", input_html: { class: 'custom-placeholder' }%>
 
+          <% counter = 0  %>
           <% @visit_form.rooms.each do |room|  %>
-            <h4>Pièce <%= room.id %></h4>
+            <% counter += 1 %>
+            <h4>Pièce <%= counter %></h4>
 
             <div class="card-room" data-controller="photo-preview">
               <div class="nested-fields">
