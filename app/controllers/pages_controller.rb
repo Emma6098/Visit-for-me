@@ -18,4 +18,12 @@ class PagesController < ApplicationController
     @booking_reject.update!(status: "rejeté")
     redirect_to control_path
   end
+
+  def profil
+    if params[:user]
+      @user = User.find(params[:user])
+    else
+      @user = current_user
+    end
+  end
 end
