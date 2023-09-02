@@ -45,7 +45,7 @@
             </div>
           <% end %>
 
-          <%= f.simple_fields_for :criteres do |critere|%>
+          <%= f.simple_fields_for :criteres do  |critere|%>
             <%= render 'critere_fields_edit', f: critere, visit_form_user: @visit_form_user %>
           <%end%>
 
