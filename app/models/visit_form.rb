@@ -1,5 +1,5 @@
 class VisitForm < ApplicationRecord
-  has_many :rooms
+  has_many :rooms, dependent: :destroy
   has_many :bookings
   belongs_to :user
   has_many :criteres, dependent: :destroy
