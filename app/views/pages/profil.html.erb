@@ -2,6 +2,31 @@
   <% if @user == current_user %>
     <h1> Mon profil </h1>
     <%= current_user.first_name %> <%= current_user.last_name %>
+    <div>
+      <h3>Reviews</h3>
+      <% if @user.reviews.empty? %>
+        <small><em class="text-muted">Soit le premier à laisser ton avis !</em></small>
+      <% end %>
+      <% @user.reviews.each do |review| %>
+        <div>
+          <% review.rating.times do %>
+            <i class="fas fa-star star-yellow"></i>
+          <% end %>
+          <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
+          <p><%= review.comment %></p>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+      <div>
+        <h5>Laisse un avis</h5>
+        <%= simple_form_for [@user, @review] do |f| %>
+          <%= f.input :comment, placeholder: "Ajoute un commentaire" %>
+          <%= f.input :rating, as: :select, collection: (1..5), required: true, label: false, input_html: { data: { controller: "star-rating" } } %>
+          <%= f.submit class: "btn" %>
+        <% end %>
+      </div>
+
   <% else %>
     <%= @user.first_name %> <%= @user.last_name %>
   <% end %>

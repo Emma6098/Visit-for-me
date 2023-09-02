@@ -3,20 +3,26 @@
   <h1 class = "show-title"><%= @visit_form.title %></h1>
 
   <div class="card-show-title">
-    <h3>Adresse du bien: <%= @visit_form.address %></h3>
+    <p><b>Localisation du bien:</b></p> <h4><%= @visit_form.address %></h4>
+    <p><b>Nombre de pièces:</b> <%= @visit_form.rooms_number %></p>
     <p class="truncate-text"><a href="<%= @visit_form.url %>" target="_blank">Lien vers l'annonce</a></p>
-    <p>Nombre de pièces: <%= @visit_form.rooms_number %></p>
-    <p>Description du bien: <%= @visit_form.description %></p>
+    <%if @visit_form.description.present?%>
+      <p>Description du bien: <%= @visit_form.description %></p>
+    <%end%>
   </div>
-
+  <div class="mt-4"><h3>Critères à vérifiés:</h3></div>
   <% @visit_form.criteres.each do |critere|%>
-    <% if critere.question.present? || critere.answer.present?%>
+    <% if critere.question.present? && critere.answer.present?%>
       <div class="card-show-title">
-        <p>critère: <%= critere.question %></p>
-        <p>réponse: <%= critere.answer %></p>
+        <p><b>Critère:</b> <%= critere.question %></p>
+        <p><b>Réponse:</b> <%= critere.answer %></p>
         <% critere.photos.each do |photo| %>
         <%= image_tag photo, class: "rooms-photos"%>
         <% end %>
+      </div>
+    <%else%>
+    <div class="card-show-title">
+        <p><b>Critère:</b> <%= critere.question %></p>
       </div>
     <%end%>
   <%end%>

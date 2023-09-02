@@ -9,13 +9,16 @@ Rails.application.routes.draw do
     patch "accept", to: "pages#accept"
     patch "reject", to: "pages#reject"
   end
+  resources :users, only: :show do
+    resources :reviews, only: [:create]
+  end
+  resources :reviews, only: [ :destroy ]
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :chatrooms, only: :show do
+  resources :chatrooms, only: [:show] do
     resources :chats, only: :create
-end
+  end
   get "control", to: "pages#control"
-  get "profil", to: "pages#profil"
   get "guide", to:"pages#guide"
 end
