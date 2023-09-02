@@ -58,6 +58,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "cocoon"
 gem "pg_search"
 gem "geocoder"
+gem 'cloudinary'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
