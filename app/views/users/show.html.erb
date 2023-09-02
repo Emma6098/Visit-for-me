@@ -1,0 +1,46 @@
+<div class="content">
+  <% if @user == current_user %>
+    <h1> Mon profil </h1>
+    <h1><%= current_user.first_name %> <%= current_user.last_name %></h1>
+    <h3>Mes avis</h3>
+    <% if current_user.reviews.empty? %>
+        <small><em class="text-muted">Tu n'as pas encore d'avis </em></small>
+      <% end %>
+    <% current_user.reviews.each do |review| %>
+        <div>
+          <% review.rating.times do %>
+            <i class="fas fa-star star-yellow"></i>
+          <% end %>
+          <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
+          <p><%= review.comment %></p>
+        </div>
+        <hr>
+      <% end %>
+    <div>
+  <% else %>
+    <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
+    <h3>Avis</h3>
+      <% if @user.reviews.empty? %>
+        <small><em class="text-muted">Soit le premier à laisser un avis à <%= @user.first_name.capitalize %> !</em></small>
+      <% end %>
+      <% @user.reviews.each do |review| %>
+        <div>
+          <% review.rating.times do %>
+            <i class="fas fa-star star-yellow"></i>
+          <% end %>
+          <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
+          <p><%= review.comment %></p>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+      <div>
+        <h5>Laisse un avis</h5>
+        <%= simple_form_for [@user, @review] do |f| %>
+          <%= f.input :rating, as: :select, collection: 1..5, include_blank: "Ajoute une note", required: true, label: false, input_html: { data: { controller: "star-rating" } } %>
+          <%= f.input :comment, placeholder: "Ajoute un commentaire", label: false %>
+          <%= f.submit class: "btn", value:"Envoyer mon avis" %>
+        <% end %>
+      </div>
+  <% end %>
+</div>

@@ -18,9 +18,9 @@
             <h3 class="text-dark"><%= truncate(visit_form.title, length: 28, omission: '...') %></h3>
             <% visit_form.bookings.each do |booking| %>
               <% if booking.status == "en attente de validation" %>
-                <%# <%= link_to profil_path(booking.user), class: "nav-link" do %>
+                <%= link_to user_path(booking.user), class: "nav-link" do%>
                   <p class="text-muted"><b>Visite réservée par : <%= booking.user.first_name.capitalize %></b></p>
-                <%# <% end %>
+                <% end%>
                 <p class="text-muted"><i><%= booking.status %></i></p>
                 <p><%=link_to "Accepter la réservation", booking_accept_path(booking), data: {turbo_method: :patch, turbo_confirm: "Etes vous sûr de vouloir accepter cette réservation?" }, class:"btn btn-accept text-decoration-none"%></p>
                 <p><%=link_to "Rejeter la réservation", booking_reject_path(booking), data: {turbo_method: :patch, turbo_confirm: "Etes vous sûr de vouloir rejeter cette réservation?" }, class:"btn btn-reject text-decoration-none"%></p>
@@ -33,9 +33,9 @@
               <% else %>
                 <% visit_form.bookings.each do |booking| %>
                   <% if booking.status != "en attente de validation" %>
-                    <%# <%= link_to profil_path(booking.user), class: "nav-link" do %>
+                    <%= link_to user_path(booking.user), class: "nav-link" do %>
                       <p class="text-muted"><b>Visite réservée par : <%= booking.user.first_name.capitalize %></b></p>
-                    <%# <% end %>
+                    <% end %>
                     <p class="text-muted"><i><%= booking.status %></i></p>
                   <% end %>
                 <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_30_103842) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_02_115943) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,6 +87,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_103842) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text "comment"
+    t.integer "rating"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.text "description"
     t.string "name"
@@ -135,6 +144,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_103842) do
   add_foreign_key "criteres", "visit_forms"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "reviews", "users"
   add_foreign_key "rooms", "visit_forms"
   add_foreign_key "visit_forms", "users"
 end
