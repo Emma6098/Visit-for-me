@@ -1,17 +1,48 @@
-.current_user_chat {
-  background-color: rgb(235, 134, 134);
-  text-align: right;
+.current_user_chat_content {
+  background-color: rgb(134, 200, 235);
   box-shadow: -4px 4px 1px black;
-
+  align-self: flex-end;
+  padding: 15px 70px 15px 20px;
+  flex-grow: 0.3;
 }
 
-.other_user_chat {
-  background-color: rgb(134, 200, 235);
+.other_user_chat_content {
+  background-color: white;
   box-shadow: 4px 4px 4px black;
+  display: flex;
+  max-width: 800px;
+
 }
 
 .chat-box {
   border-radius: 4px;
   padding: 4px;
-  margin-top: 10px;
+  margin-top: 2px;
+}
+
+.current_user_chat {
+  text-align: right;
+}
+
+.time {
+  display: block;
+  font-size: smaller;
+}
+
+.user_name {
+  display: block;
+  padding: 6px 0px 0px 5px;
+}
+
+.avatar-c{
+  width:30px;
+  height:30px;
+  border-radius:5px;
+  position: sticky;
+
+}
+
+.other_user_name_avatar {
+  display: inline-flex;
+  color: green;
 }

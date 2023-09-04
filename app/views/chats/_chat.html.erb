@@ -1,19 +1,28 @@
 <div id="chat-<%= chat.id %>">
+
   <% if chat.user == current_user %>
-    <div class="current_user_chat chat-box">
-      <small>
-        <p><%= chat.created_at.strftime("%a %b %e at %l:%M %p") %></p>
-      </small>
-      <strong><%= chat.user.first_name %></strong>
+  <div class="current_user_chat">
+  <div class="current_user_chat_content chat-box">
       <p><%= chat.content %></p>
     </div>
+    <span class="time"><%= chat.created_at.strftime("%a %b %e at %l:%M %p") %></span>
+    </div>
+
   <% else %>
-    <div class="other_user_chat chat-box">
-      <small>
-        <p><%= chat.created_at.strftime("%a %b %e at %l:%M %p") %></p>
-      </small>
-      <strong><%= chat.user.first_name %></strong>
+  <div class="other_user_chat">
+  <div class="other_user_name_avatar">
+    <div class="other_user_avatar">
+    <% if chat.user.photo.attached? %>
+              <%= cl_image_tag chat.user.photo.key, class: "avatar-c avatar-absolut-c" %>
+            <% else %>
+              <img class="avatar-c avatar-absolut-c" src="https://res.cloudinary.com/dhvssfzz1/image/upload/v1693474293/avatar-_mtc5tf.jpg" alt="photo de profil">
+            <% end%></div>
+  <strong class="user_name"><%= chat.user.first_name %> </strong>
+  </div>
+    <div class="other_user_chat_content chat-box">
       <p><%= chat.content %></p>
+    </div>
+    <span class="time"><%= chat.created_at.strftime("%a %b %e at %l:%M %p") %></span>
     </div>
   <% end %>
 </div>
