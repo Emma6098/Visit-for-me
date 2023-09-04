@@ -58,20 +58,24 @@ class VisitFormsController < ApplicationController
     @visit_form = VisitForm.find(params[:id])
     @visit_form.update(visit_form_params)
 
-    params[:rooms_names].each do |room_params|
-      room_id = room_params[0]
-      room_name = room_params[1]
-      r = Room.find(room_id)
-      r.update(name: room_name)
-      r.save!
+    if params[:rooms_names].present?
+      params[:rooms_names].each do |room_params|
+        room_id = room_params[0]
+        room_name = room_params[1]
+        r = Room.find(room_id)
+        r.update(name: room_name)
+        r.save!
+      end
     end
 
-    params[:rooms_descriptions].each do |room_params|
-      room_id = room_params[0]
-      room_description = room_params[1]
-      r = Room.find(room_id)
-      r.update(description: room_description)
-      r.save!
+    if params[:rooms_descriptions].present?
+      params[:rooms_descriptions].each do |room_params|
+        room_id = room_params[0]
+        room_description = room_params[1]
+        r = Room.find(room_id)
+        r.update(description: room_description)
+        r.save!
+      end
     end
 
     if params[:rooms_photos].present?
