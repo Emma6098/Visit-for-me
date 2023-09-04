@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   resources :users, only: :show do
     resources :reviews, only: [:create]
   end
-  resources :reviews, only: [ :destroy ]
+  resources :reviews, only: [:destroy]
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :chatrooms, only: [:show] do
+  resources :chatrooms, only: [:index, :show] do
     resources :chats, only: :create
   end
   get "control", to: "pages#control"
