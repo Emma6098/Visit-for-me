@@ -2,14 +2,14 @@
   <%= link_to visit_forms_path, class: "nav-link" do %>
   <i class="fa-solid fa-magnifying-glass"></i>
   <% end %>
-  <%= link_to control_path, class: "nav-link" do %>
-  <i class="fa-solid fa-calendar"></i>
-  <% end %>
-  <%= link_to new_visit_form_path, class: "nav-link" do %>
-  <i class="fa-solid fa-plus"></i>
-  <% end %>
   <%=link_to guide_path, class: "nav-link" do %>
   <i class="fa-solid fa-book"></i>
+  <% end %>
+  <%= link_to new_visit_form_path, class: "nav-link" do %>
+  <i class="fa-solid fa-plus fa-xl"></i>
+  <% end %>
+  <%= link_to control_path, class: "nav-link" do %>
+  <i class="fa-solid fa-calendar"></i>
   <% end %>
   <%=link_to chatroom_path(Chatroom.first.id) do %>
   <i class="fa-solid fa-envelope"></i>

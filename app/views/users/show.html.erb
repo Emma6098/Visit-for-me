@@ -68,7 +68,7 @@
         <hr>
       <% end %>
     </div>
-    <% if @user.bookings.exists?(status: "validé") %>
+    <% if current_user.visit_forms.joins(:bookings).where(bookings: { status: 'validé', user: @user }).exists? %>
       <div class="mt-3">
         <h5 class="mt-4">Laisse un avis</h5>
         <%= simple_form_for [@user, @review] do |f| %>

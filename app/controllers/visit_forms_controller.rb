@@ -83,7 +83,7 @@ class VisitFormsController < ApplicationController
         r.save!
       end
     end
-    redirect_to visit_form_path(@visit_form)
+    redirect_to visit_form_path(@visit_form), notice: "Le compte-rendu a été envoyé avec succès."
   end
 
   def destroy
@@ -91,6 +91,21 @@ class VisitFormsController < ApplicationController
     @visit_form.destroy
     redirect_to visit_forms_path(@visit_form), status: :see_other
   end
+
+  def save_partial
+    @visit_form = VisitForm.find(params[:id])
+
+    # Mettez à jour les attributs du modèle avec les données du formulaire
+    @visit_form.update(visit_form_params)
+
+    # Sauvegardez le formulaire partiellement sans validation
+    if @visit_form.save(validate: false)
+      redirect_to edit_visit_form_path(@visit_form), notice: "Formulaire partiellement enregistré."
+    else
+      # Gérez les erreurs ici si nécessaire
+    end
+  end
+
 
   private
 
