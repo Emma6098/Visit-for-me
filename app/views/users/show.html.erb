@@ -1,9 +1,7 @@
 <div class="content">
+
   <% if @user == current_user %>
     <h1> Mon profil </h1>
-    <h1><%= current_user.first_name %> <%= current_user.last_name %></h1>
-    <h3>Mes avis reçus</h3>
-    <% if current_user.received_reviews.empty? %>
       <div class="card-profil">
         <div class="profil-content">
           <h1 class="user-name"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h1>
@@ -25,11 +23,10 @@
           <% end%>
         </div>
       </div>
-    <% end %>
 
-    <h3 class="mt-5">Mes avis</h3>
+    <h3 class="mt-5 mb-4">Mes avis</h3>
 
-    <% if current_user.reviews.empty? %>
+    <% if current_user.received_reviews.empty? %>
       <small><em class="text-muted">Tu n'as pas encore d'avis </em></small>
     <% end %>
 
@@ -40,11 +37,11 @@
           <% end %>
           <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
           <p><%= review.comment %></p>
+          <hr>
         </div>
     <% end %>
+
   <% else %>
-    <h3>Avis sur <%= @user.first_name.capitalize %></h3>
-    <% if @user.received_reviews.empty? %>
       <div>
         <div class="card-profil">
           <div class="profil-content">
@@ -61,8 +58,8 @@
             <% end%>
           </div>
         </div>
-        <h3 class="mt-5">Avis</h3>
-          <% if @user.reviews.empty? %>
+        <h3 class="mt-5 mb-4">Avis</h3>
+          <% if @user.received_reviews.empty? %>
             <small><em class="text-muted">Soit le premier à laisser un avis à <%= @user.first_name.capitalize %> !</em></small>
           <% end %>
           <% @user.received_reviews.each do |review| %>
@@ -76,18 +73,15 @@
             <hr>
           <% end %>
         </div>
-        <hr>
-      <% end %>
-    </div>
+
     <% if current_user.visit_forms.joins(:bookings).where(bookings: { status: 'validé', user: @user }).exists? %>
-      <div class="mt-3">
-        <h5 class="mt-4">Laisse un avis</h5>
+      <div class="mt-5">
+        <h5>Laisse un avis</h5>
         <%= simple_form_for [@user, @review] do |f| %>
           <%= f.input :rating, as: :select, collection: 1..5, include_blank: "Ajoute une note", required: true, label: false, input_html: { data: { controller: "star-rating" } } %>
           <%= f.input :comment, placeholder: "Ajoute un commentaire", label: false %>
           <%= f.submit class: "btn button-reserver", value:"Poster mon avis" %>
         <% end %>
-
       </div>
     <% end %>
   <% end %>
