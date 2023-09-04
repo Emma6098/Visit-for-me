@@ -58,6 +58,7 @@ a {
 .card-show-title {
   margin-top: 10px;
   padding: 10px;
+  padding-top: 20px;
   background-color: white;
   border-radius: 7px;
   height: auto;
@@ -139,36 +140,12 @@ a {
 .card-visit{
   background-color: rgb(249, 249, 249);
   margin-bottom: 20px;
-  padding: 10px;
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
-}
-
-.boocked-visit {
-  position: relative !important;
-  overflow: hidden !important;
-  background-color: #D7D9D7 !important;
-}
-
-.booked-visit::before {
-  content: "Formation passée" !important;
-  display: none !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  color: white !important;
-  font-weight: bold;
-  font-size: 30px !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
-  font-size: 18px !important;
-  font-size: 24px !important;
-  backdrop-filter: blur(2px) !important;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
-
+  h2 {
+    margin-bottom: 20px;
+  }
 }
 
 .card-control{

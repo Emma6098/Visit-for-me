@@ -6,7 +6,6 @@
         <%= simple_form_for [@visit_form], html: { class: 'visit-form' } do |f| %>
           <div class="card-visit">
             <h2><%= f.object.title%></h2>
-            <br>
             <h6><b>Nombre de pièce :</b> <%= f.object.rooms_number%></h6>
             <h6><b>Localisation :</b></h6>
             <p><%= f.object.address%></p>

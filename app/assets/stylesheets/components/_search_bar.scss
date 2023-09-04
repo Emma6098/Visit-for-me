@@ -1,19 +1,23 @@
 .search, .btn-search{
   margin-bottom: 5px;
-  border-radius: 5px;
 }
 
 .btn-search{
   display: inline-block;
-  border: 1px solid #687BA7;
-  border-radius: 5px;
-  color: black;
+  border-top: 1px solid var(--bs-border-color);
+  border-left: 1px solid var(--bs-border-color);
+  border-bottom: 1px solid var(--bs-border-color);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: grey;
   z-index: 1;
-  background-color: #687BA7;
+  background-color: white;
  }
 
  .form-control{
   background-color: white;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
  }
  .form-control::placeholder {
   font-style: italic;
