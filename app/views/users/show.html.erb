@@ -1,6 +1,9 @@
 <div class="content">
   <% if @user == current_user %>
     <h1> Mon profil </h1>
+    <h1><%= current_user.first_name %> <%= current_user.last_name %></h1>
+    <h3>Mes avis reçus</h3>
+    <% if current_user.received_reviews.empty? %>
     <div class="card-profil">
           <div class="profil-content">
             <h1 class="user-name"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h1>
@@ -26,7 +29,7 @@
     <% if current_user.reviews.empty? %>
         <small><em class="text-muted">Tu n'as pas encore d'avis </em></small>
       <% end %>
-    <% current_user.reviews.each do |review| %>
+    <% current_user.received_reviews.each do |review| %>
         <div>
           <% review.rating.times do %>
             <i class="fas fa-star star-yellow"></i>
@@ -37,6 +40,8 @@
     <% end %>
 
   <% else %>
+  <h3>Avis sur <%= @user.first_name.capitalize %></h3>
+    <% if @user.received_reviews.empty? %>
   <div>
     <div class="card-profil">
           <div class="profil-content">
@@ -57,7 +62,7 @@
       <% if @user.reviews.empty? %>
         <small><em class="text-muted">Soit le premier à laisser un avis à <%= @user.first_name.capitalize %> !</em></small>
       <% end %>
-      <% @user.reviews.each do |review| %>
+      <% @user.received_reviews.each do |review| %>
         <div>
           <% review.rating.times do %>
             <i class="fas fa-star star-yellow"></i>
