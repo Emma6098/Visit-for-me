@@ -4,6 +4,29 @@
     <h1><%= current_user.first_name %> <%= current_user.last_name %></h1>
     <h3>Mes avis reçus</h3>
     <% if current_user.received_reviews.empty? %>
+    <div class="card-profil">
+          <div class="profil-content">
+            <h1 class="user-name"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h1>
+            <%if @reviews.present?%>
+              <p><%= number_with_precision(@average_rating, precision: 1) %> <i class="fas fa-star star-yellow"></i></p>
+            <%end%>
+            <p><i><%= current_user.email %></i></p>
+          </div>
+          <div class="update">
+            <%= link_to edit_user_registration_path do%>
+                <i class="fa-solid fa-pencil"></i>
+            <%end%>
+          </div>
+          <div class="profil-avatar">
+            <% if current_user.photo.attached? %>
+              <%= cl_image_tag current_user.photo.key, class: "avatar-i avatar-absolut-i" %>
+            <% else %>
+              <img class="avatar-i avatar-absolut-i" src="https://res.cloudinary.com/dhvssfzz1/image/upload/v1693474293/avatar-_mtc5tf.jpg" alt="">
+            <% end%>
+          </div>
+    </div>
+    <h3 class="mt-5">Mes avis</h3>
+    <% if current_user.reviews.empty? %>
         <small><em class="text-muted">Tu n'as pas encore d'avis </em></small>
       <% end %>
     <% current_user.received_reviews.each do |review| %>
@@ -14,12 +37,29 @@
           <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
           <p><%= review.comment %></p>
         </div>
-        <hr>
-      <% end %>
-    <div>
+    <% end %>
+
   <% else %>
   <h3>Avis sur <%= @user.first_name.capitalize %></h3>
     <% if @user.received_reviews.empty? %>
+  <div>
+    <div class="card-profil">
+          <div class="profil-content">
+            <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
+            <%if @reviews.present?%>
+              <p><%= number_with_precision(@average_rating, precision: 1) %> <i class="fas fa-star star-yellow"></i></p>
+            <%end%>
+          </div>
+          <div class="profil-avatar">
+            <% if @user.photo.attached? %>
+              <%= cl_image_tag @user.photo.key, class: "avatar-i avatar-absolut-i" %>
+            <% else %>
+              <img class="avatar-i avatar-absolut-i" src="https://res.cloudinary.com/dhvssfzz1/image/upload/v1693474293/avatar-_mtc5tf.jpg" alt="">
+            <% end%>
+          </div>
+    </div>
+    <h3 class="mt-5">Avis</h3>
+      <% if @user.reviews.empty? %>
         <small><em class="text-muted">Soit le premier à laisser un avis à <%= @user.first_name.capitalize %> !</em></small>
       <% end %>
       <% @user.received_reviews.each do |review| %>
@@ -33,13 +73,15 @@
         <hr>
       <% end %>
     </div>
-      <div>
-        <h5>Laisse un avis</h5>
+    <% if @user.bookings.exists?(status: "validé") %>
+      <div class="mt-3">
+        <h5 class="mt-4">Laisse un avis</h5>
         <%= simple_form_for [@user, @review] do |f| %>
           <%= f.input :rating, as: :select, collection: 1..5, include_blank: "Ajoute une note", required: true, label: false, input_html: { data: { controller: "star-rating" } } %>
           <%= f.input :comment, placeholder: "Ajoute un commentaire", label: false %>
-          <%= f.submit class: "btn", value:"Envoyer mon avis" %>
+          <%= f.submit class: "btn button-reserver", value:"Poster mon avis" %>
         <% end %>
       </div>
+    <%end%>
   <% end %>
 </div>
