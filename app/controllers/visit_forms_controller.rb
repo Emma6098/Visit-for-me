@@ -6,8 +6,6 @@ class VisitFormsController < ApplicationController
       @visit_forms = VisitForm.all
     end
 
-    @booked_visits = Booking.pluck(:visit_form_id)
-
     @markers = @visit_forms.geocoded.map do |visit_form|
       {
         lat: visit_form.latitude,
@@ -24,7 +22,6 @@ class VisitFormsController < ApplicationController
     @criteres = @visit_form.criteres
     @rooms = @visit_form.rooms
     @booking = Booking.new
-    # @rooms = Room.new
     @marker = {
       lat: @visit_form.latitude,
       lng: @visit_form.longitude
@@ -61,20 +58,24 @@ class VisitFormsController < ApplicationController
     @visit_form = VisitForm.find(params[:id])
     @visit_form.update(visit_form_params)
 
-    params[:rooms_names].each do |room_params|
-      room_id = room_params[0]
-      room_name = room_params[1]
-      r = Room.find(room_id)
-      r.update(name: room_name)
-      r.save!
+    if params[:rooms_names].present?
+      params[:rooms_names].each do |room_params|
+        room_id = room_params[0]
+        room_name = room_params[1]
+        r = Room.find(room_id)
+        r.update(name: room_name)
+        r.save!
+      end
     end
 
-    params[:rooms_descriptions].each do |room_params|
-      room_id = room_params[0]
-      room_description = room_params[1]
-      r = Room.find(room_id)
-      r.update(description: room_description)
-      r.save!
+    if params[:rooms_descriptions].present?
+      params[:rooms_descriptions].each do |room_params|
+        room_id = room_params[0]
+        room_description = room_params[1]
+        r = Room.find(room_id)
+        r.update(description: room_description)
+        r.save!
+      end
     end
 
     if params[:rooms_photos].present?
@@ -86,7 +87,7 @@ class VisitFormsController < ApplicationController
         r.save!
       end
     end
-    redirect_to visit_form_path(@visit_form)
+    redirect_to visit_form_path(@visit_form), notice: "Le compte-rendu a été envoyé avec succès."
   end
 
   def destroy
@@ -94,6 +95,21 @@ class VisitFormsController < ApplicationController
     @visit_form.destroy
     redirect_to visit_forms_path(@visit_form), status: :see_other
   end
+
+  def save_partial
+    @visit_form = VisitForm.find(params[:id])
+
+    # Mettez à jour les attributs du modèle avec les données du formulaire
+    @visit_form.update(visit_form_params)
+
+    # Sauvegardez le formulaire partiellement sans validation
+    if @visit_form.save(validate: false)
+      redirect_to edit_visit_form_path(@visit_form), notice: "Formulaire partiellement enregistré."
+    else
+      # Gérez les erreurs ici si nécessaire
+    end
+  end
+
 
   private
 

@@ -28,10 +28,31 @@
 
 .avatar-absolut-i{
  position: absolute;
- top: 24px;
+ top: 50%;
+ transform: translateY(-50%);
  left:10px;
 }
 
 .logo{
   border-radius: 5px;
+}
+
+.avatar-show{
+  position: absolute;
+  top:10px;
+  right: 10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.update{
+  position: absolute;
+  top:20px;
+  right: 20px;
+  a{color: black !important;}
+}
+
+.star-yellow{
+  color: rgb(255, 211, 81) !important;
 }
