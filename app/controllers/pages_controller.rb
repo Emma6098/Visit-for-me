@@ -10,6 +10,8 @@ class PagesController < ApplicationController
   def accept
     @booking_accept = Booking.find(params[:booking_id])
     @booking_accept.update!(status: "validé")
+    # @visit_form = VisitForm.find(params[:id])
+    @chatroom = Chatroom.create!(name: "Chat avec Jésus")
     redirect_to control_path
   end
 
