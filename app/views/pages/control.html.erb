@@ -19,7 +19,7 @@
             <% visit_form.bookings.each do |booking| %>
               <% if booking.status == "en attente de validation" %>
                 <%= link_to user_path(booking.user), class: "nav-link" do%>
-                  <p class="text-muted"><b>Visite réservée par : <%= booking.user.first_name.capitalize %></b></p>
+                  <p class="text-muted">Visite réservée par : <b><%= booking.user.first_name.capitalize %></b></p>
                 <% end%>
                 <p class="text-muted"><i><%= booking.status %></i></p>
                 <p><%=link_to "Accepter la réservation", booking_accept_path(booking), data: {turbo_method: :patch, turbo_confirm: "Etes vous sûr de vouloir accepter cette réservation?" }, class:"btn btn-accept text-decoration-none"%></p>
@@ -34,7 +34,7 @@
                 <% visit_form.bookings.each do |booking| %>
                   <% if booking.status != "en attente de validation" %>
                     <%= link_to user_path(booking.user), class: "nav-link" do %>
-                      <p class="text-muted"><b>Visite réservée par : <%= booking.user.first_name.capitalize %></b></p>
+                      <p class="text-muted">Visite réservée par : <b><%= booking.user.first_name.capitalize %></b></p>
                     <% end %>
                     <p class="text-muted"><i><%= booking.status %></i></p>
                   <% end %>

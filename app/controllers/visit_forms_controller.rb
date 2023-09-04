@@ -6,8 +6,6 @@ class VisitFormsController < ApplicationController
       @visit_forms = VisitForm.all
     end
 
-    @booked_visits = Booking.pluck(:visit_form_id)
-
     @markers = @visit_forms.geocoded.map do |visit_form|
       {
         lat: visit_form.latitude,
@@ -24,7 +22,6 @@ class VisitFormsController < ApplicationController
     @criteres = @visit_form.criteres
     @rooms = @visit_form.rooms
     @booking = Booking.new
-    # @rooms = Room.new
     @marker = {
       lat: @visit_form.latitude,
       lng: @visit_form.longitude
