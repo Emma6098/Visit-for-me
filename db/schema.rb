@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_04_104226) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_05_102933) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_104226) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "chatroom_id"
+    t.bigint "user_id"
+    t.bigint "other_user_id"
   end
 
   create_table "chats", force: :cascade do |t|
@@ -108,6 +111,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_104226) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -115,8 +120,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_104226) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "first_name"
-    t.string "last_name"
     t.string "nickname"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -141,6 +144,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_104226) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "users"
   add_foreign_key "bookings", "visit_forms"
+  add_foreign_key "chatrooms", "chatrooms"
+  add_foreign_key "chatrooms", "users"
   add_foreign_key "chats", "chatrooms"
   add_foreign_key "chats", "users"
   add_foreign_key "criteres", "visit_forms"
