@@ -1,23 +1,24 @@
-<div class="content ">
-    <% @chatrooms.each do |chatroom| %>
-      <%= link_to chatroom_path(chatroom) do%>
-      <div class="chatroom-index">
-        <div class="index-chatroom-content">
-        <h3><%= chatroom.name%></h3>
-        <% if chatroom.chats.present? %>
-         <p class="last-chat"><%= chatroom.chats.last.content %></p>
-         <% else %>
-         <p class="last-chat">Aucun message</p>
-         <% end %>
+<div class="content">
+<h1> Discussions</h1>
+  <% @chatrooms.each do |chatroom| %>
+    <%= link_to chatroom_path(chatroom) do %>
+      <div class="card-index-chat">
+        <div class="index-content">
+          <h3><%= chatroom.name %></h3>
+          <% if chatroom.chats.present? %>
+            <p class="last-chat"><%= chatroom.chats.last.content %></p>
+          <% else %>
+            <p class="last-chat">Aucun message</p>
+          <% end %>
         </div>
         <div class="index-avatar">
-            <% if @chatroom_user.photo.attached? %>
-              <%= cl_image_tag chatroom_user.photo.key, class: "avatar-i" %>
-            <% else %>
-              <img class="avatar-i" src="https://res.cloudinary.com/dhvssfzz1/image/upload/v1693474293/avatar-_mtc5tf.jpg" alt="">
-            <% end%>
-          </div>
+          <% if @chatroom_user.photo.attached? %>
+            <%= cl_image_tag chatroom_user.photo.key, class: "avatar-i avatar-absolut-i" %>
+          <% else %>
+            <img class="avatar-c avatar-absolut-i" src="https://res.cloudinary.com/dhvssfzz1/image/upload/v1693474293/avatar-_mtc5tf.jpg" alt="">
+          <% end %>
+        </div>
       </div>
-      <%end%>
-    <%end%>
+    <% end %>
+  <% end %>
 </div>

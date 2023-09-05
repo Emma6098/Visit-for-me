@@ -13,5 +13,13 @@
 .chat-box {
   border-radius: 4px;
   padding: 4px;
-  margin-top: 10px;
+  margin-bottom: 14px;
+  width: 100%;
+  margin-left: 6px;
+}
+.other-chatbox{
+  min-width: 100px;
+  display: flex;
+  margin-left: -42px;
+  align-items: center;
 }
