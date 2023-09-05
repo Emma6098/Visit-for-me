@@ -77,9 +77,9 @@
         <%else%>
           <div class="btn button-reserver">Rejeté</div>
         <%end%>
-    <%end%>
+      <%end%>
     <% elsif  current_user == @visit_form.user && @visit_form.bookings.exists?(visit_form_id: @visit_form.id) %>
-    <div class="btn button-reserver">Votre visite a été réservée</div>
+      <div class="btn button-reserver">Votre visite a été réservée</div>
     <% else %>
       <%=link_to "Réserver la visite", visit_form_bookings_path(@visit_form), data: {turbo_method: :post, turbo_confirm: "Etes vous sûr de vouloir réserver cette formation?" }, class:"btn button-reserver"%>
     <%end%>
