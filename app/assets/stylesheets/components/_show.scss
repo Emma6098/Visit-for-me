@@ -1,3 +1,28 @@
 .show-title{
   text-align: center;
 }
+
+.rooms-number{
+  background-color: #6a75c3;
+  border: none;
+  padding: 5px;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 50%;
+  color: white;
+  height: 30px;
+  width: 30px;
+}
+
+.rooms-number-index{
+  background-color: #c7ccf3;
+  border: none;
+  padding: 5px;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 5px;
+  color: white;
+  height: 30px;
+}

@@ -6,7 +6,7 @@
     <b>Visite proposée par :</b><h5><%= @visit_form.user.first_name.capitalize %></h5>
     <%end%>
     <b>Localisation du bien:</b><h5><%= @visit_form.address %></h5>
-    <p><b>Nombre de pièces:</b> <%= @visit_form.rooms_number %></p>
+    <p><b>Nombre de pièces:</b> <span class="rooms-number"><%= @visit_form.rooms_number %></span></p>
     <p class="truncate-text"><a href="<%= @visit_form.url %>" target="_blank">Lien vers l'annonce</a></p>
     <%if @visit_form.description.present?%>
       <p>Description du bien: <%= @visit_form.description %></p>
