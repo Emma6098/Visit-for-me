@@ -41,7 +41,7 @@
     <%else%>
         <p><%= @visit_form.user.first_name.capitalize %> n'a pas précisé de critères à verifier</p>
     <%end%>
-  <%end%>
+
 
   <% @visit_form.rooms.each do |room|%>
     <% if room.name.present? || room.description.present? %>
