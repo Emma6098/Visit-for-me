@@ -40,9 +40,20 @@
   color: rgb(122, 118, 118) !important;
 }
 
-a {
-  text-decoration: none !important;
+.pieces{
+  color: white;
+  background-color: #8695FF;
+  border-radius: 5px;
+  padding: 3px;
+  padding-top: 1px;
+  padding-bottom: 1px;
 }
+
+
+.lien{
+color: #8695FF;
+text-decoration: none !important}
+
 
 .flex-container-show{
   display: flex;
@@ -59,6 +70,7 @@ a {
   margin-top: 10px;
   padding: 10px;
   padding-top: 20px;
+  padding-bottom: 20px;
   background-color: white;
   border-radius: 7px;
   height: auto;
@@ -71,29 +83,28 @@ a {
   position: relative;
 }
 
-.card-show-title p{
-  word-wrap: break-word;
-}
-
 .title-container {
   display: flex;
   align-items: center;
 }
 
-.card-show {
-  margin-top: 30px;
-  padding: 20px;
+.card-show-critere {
+  margin-top: 10px;
+  padding: 10px;
   background-color: white;
   border-radius: 7px;
   height: auto;
-  width: 100%;
+  width: auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
   color: rgb(109, 107, 107);
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
   position: relative;
+}
+
+.card-show-critere p{
+  word-wrap: break-word;
 }
 
 .card-booking {
