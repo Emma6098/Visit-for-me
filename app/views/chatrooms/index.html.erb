@@ -11,7 +11,6 @@
             <p class="last-chat">Aucun message</p>
           <% end %>
         </div>
-
         <div class="index-avatar">
           <% if @chatroom_user.photo.attached? %>
             <%= cl_image_tag chatroom_user.photo.key, class: "avatar-i avatar-absolut-i" %>
