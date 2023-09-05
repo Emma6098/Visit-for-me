@@ -10,7 +10,7 @@ class PagesController < ApplicationController
   def accept
     @booking_accept = Booking.find(params[:booking_id])
 
-    @booking_accept.update!(status: "validé")
+    @booking_accept.update!(status: "validée")
     other_user = @booking_accept.user
 
     # @visit_form = VisitForm.find(params[:id])

@@ -5,6 +5,6 @@ class UsersController < ApplicationController
     @reviews = @user.reviews
 
     total_rating = @user.received_reviews.sum(&:rating)
-    @average_rating = total_rating.to_f / @user.received_reviews.count
+    @average_rating = (total_rating.to_f / @user.received_reviews.count).round(1)
   end
 end

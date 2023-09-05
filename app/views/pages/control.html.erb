@@ -33,16 +33,16 @@
       </div>
     <% end %>
 
-    <% if current_user.visit_forms.any? { |visit_form| visit_form.bookings.any? { |booking| booking.status == "validé" } } %>
+    <% if current_user.visit_forms.any? { |visit_form| visit_form.bookings.any? { |booking| booking.status == "validée" } } %>
       <div class="section">
         <h3 class="mb-3">Réservations validées &#9989</h3>
         <% current_user.visit_forms.each do |visit_form| %>
-          <% if visit_form.bookings.any? { |booking| booking.status == "validé" } %>
+          <% if visit_form.bookings.any? { |booking| booking.status == "validée" } %>
             <%= link_to visit_form_path(visit_form), class: "text-decoration-none" do %>
               <div class="card-control">
                 <h3 class="text-dark"><%= truncate(visit_form.title, length: 28, omission: '...') %></h3>
                 <% visit_form.bookings.each do |booking| %>
-                  <% if booking.status == "validé" %>
+                  <% if booking.status == "validée" %>
                     <%= link_to user_path(booking.user), class: "nav-link" do %>
                       <p class="text-muted">Visite réservée par : <b><%= booking.user.first_name.capitalize %></b></p>
                     <% end %>
@@ -56,18 +56,41 @@
       </div>
     <% end %>
 
-    <% if current_user.visit_forms.any? { |visit_form| visit_form.bookings.any? { |booking| booking.status == "rejeté" } } %>
+    <% if current_user.visit_forms.any? { |visit_form| visit_form.bookings.any? { |booking| booking.status == "rejetée" } } %>
       <div class="section">
         <h3 class="mb-3">Réservations rejetées &#10060</h3>
         <% current_user.visit_forms.each do |visit_form| %>
-          <% if visit_form.bookings.any? { |booking| booking.status == "rejeté" } %>
+          <% if visit_form.bookings.any? { |booking| booking.status == "rejetée" } %>
             <%= link_to visit_form_path(visit_form), class: "text-decoration-none" do %>
               <div class="card-control">
                 <h3 class="text-dark"><%= truncate(visit_form.title, length: 28, omission: '...') %></h3>
                 <% visit_form.bookings.each do |booking| %>
-                  <% if booking.status == "rejeté" %>
+                  <% if booking.status == "rejetée" %>
                     <%= link_to user_path(booking.user), class: "nav-link" do %>
                       <p class="text-muted">Visite réservée par : <b><%= booking.user.first_name.capitalize %></b></p>
+                    <% end %>
+                    <p class="text-muted"><i><%= booking.status %></i></p>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if current_user.visit_forms.any? { |visit_form| visit_form.bookings.any? { |booking| booking.status == "terminée" } } %>
+      <div class="section">
+        <h3 class="mb-3">Visites terminées &#127881</h3>
+        <% current_user.visit_forms.each do |visit_form| %>
+          <% if visit_form.bookings.any? { |booking| booking.status == "terminée" } %>
+            <%= link_to visit_form_path(visit_form), class: "text-decoration-none" do %>
+              <div class="card-control">
+                <h3 class="text-dark"><%= truncate(visit_form.title, length: 28, omission: '...') %></h3>
+                <% visit_form.bookings.each do |booking| %>
+                  <% if booking.status == "terminée" %>
+                    <%= link_to user_path(booking.user), class: "nav-link" do %>
+                      <p class="text-muted">Visite réalisée par : <b><%= booking.user.first_name.capitalize %></b></p>
                     <% end %>
                     <p class="text-muted"><i><%= booking.status %></i></p>
                   <% end %>

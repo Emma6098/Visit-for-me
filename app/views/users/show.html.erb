@@ -6,7 +6,7 @@
         <div class="profil-content">
           <h1 class="user-name"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h1>
           <%if @reviews.present?%>
-            <p><%= number_with_precision(@average_rating, precision: 1) %> <i class="fas fa-star star-yellow"></i></p>
+            <p><%= @average_rating %> <i class="fas fa-star star-yellow"></i></p>
           <%end%>
           <p><i><%= current_user.email %></i></p>
         </div>
@@ -48,7 +48,7 @@
           <div class="profil-content">
             <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
             <%if @reviews.present?%>
-              <p><%= number_with_precision(@average_rating, precision: 1) %> <i class="fas fa-star star-yellow"></i></p>
+              <p><%= @average_rating %> <i class="fas fa-star star-yellow"></i></p>
             <%end%>
           </div>
           <div class="profil-avatar">
@@ -76,7 +76,7 @@
           <% end %>
         </div>
 
-    <% if current_user.visit_forms.joins(:bookings).where(bookings: { status: 'validé', user: @user }).exists? %>
+    <% if current_user.visit_forms.joins(:bookings).where("bookings.status = 'terminée' OR bookings.status = 'validée'").where(bookings: { user: @user }).exists? %>
       <div class="mt-5">
         <h5>Laisse un avis</h5>
         <%= simple_form_for [@user, @review] do |f| %>
