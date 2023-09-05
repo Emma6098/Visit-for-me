@@ -67,7 +67,7 @@
       <%=link_to "Supprimer la visite", visit_form_path(@visit_form), data: {turbo_method: :delete, turbo_confirm: "Etes vous sûr de vouloir supprimer cette visite" }, class:"btn button-supprimer"%>
     <%elsif current_user.bookings.exists?(visit_form_id: @visit_form.id) %>
       <% @visit_form.bookings.each do |booking| %>
-        <% if booking.status == "validé" %>
+        <% if booking.status == "validée" %>
           <%= link_to "Editer mon compte-rendu", edit_visit_form_path(@visit_form), class: "btn button-reserver" %>
           <%= link_to "Envoyer le compte-rendu", booking_ended_path(booking), data: { turbo_method: :patch, turbo_confirm: "Etes vous sûr de vouloir finaliser cette réservation, vous ne pourez plus la modifier ?" }, class: "btn btn button-terminer" %>
         <%elsif booking.status == "en attente de validation"%>
