@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :bookings, only: :destroy do
     patch "accept", to: "pages#accept"
     patch "reject", to: "pages#reject"
+    patch "ended", to: "pages#ended"
   end
   resources :users, only: :show do
     resources :reviews, only: [:create]

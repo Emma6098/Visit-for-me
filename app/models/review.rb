@@ -5,6 +5,6 @@ class Review < ApplicationRecord
   after_create :send_welcome_email
 
   def send_welcome_email
-    UserMailer.welcome(self.recipient).deliver_now
+    UserMailer.welcome(self.recipient, self).deliver_now
   end
 end
