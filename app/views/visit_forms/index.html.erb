@@ -29,7 +29,15 @@
           <div class="index-content">
             <h3><%= truncate(visit_form.title, length: 18, omission: '...') %></h3>
             <p class="address"><%= truncate(visit_form.address, length: 60, omission: '...') %></p>
+            <span class="pieces">
+            <%if visit_form.rooms_number > 1 %>
+              <%= visit_form.rooms_number%> pièces
+            <%else%>
+              <%= visit_form.rooms_number%> pièce
+            <%end%>
+          </span>
           </div>
+
           <div class="index-avatar">
             <% if visit_form.user.photo.attached? %>
               <%= cl_image_tag visit_form.user.photo.key, class: "avatar-i avatar-absolut-i" %>

@@ -16,10 +16,26 @@
               <%= link_to_add_association '<i class="fa-solid fa-plus"></i> Ajouter un critère'.html_safe, f, :criteres%>
             </span>
           </div>
-          <%= f.button :submit, 'Ajouter la visite', class: 'btn-submit' %>
+          <button type="button" class="btn btn-submit" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+          Ajouter la visite
+          </button>
+          <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Êtes-vous sûr de vouloir ajouter cette visite ?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Annuler</button>
+                <%= f.submit 'Envoyer', class: 'btn btn-submit' %>
+              </div>
+            </div>
+          </div>
+          </div>
         <% end %>
     </div>
 </div>
-
-<%# ajout flatpicker
-, as: :string, input_html: { data: { controller: "datepicker" } } %>

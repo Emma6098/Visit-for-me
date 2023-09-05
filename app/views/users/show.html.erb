@@ -32,6 +32,7 @@
 
     <% current_user.received_reviews.each do |review| %>
         <div>
+        <p><strong><%= review.user.first_name.capitalize %> <%= review.user.last_name.capitalize %></strong></p>
           <% review.rating.times do %>
             <i class="fas fa-star star-yellow"></i>
           <% end %>
@@ -64,6 +65,7 @@
           <% end %>
           <% @user.received_reviews.each do |review| %>
             <div>
+            <p><strong><%= review.user.first_name.capitalize %> <%= review.user.last_name.capitalize %></strong></p>
               <% review.rating.times do %>
                 <i class="fas fa-star star-yellow"></i>
               <% end %>

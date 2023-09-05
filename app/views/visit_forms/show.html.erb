@@ -1,9 +1,9 @@
 <div class="content">
 
   <h1 class = "show-title"><%= @visit_form.title %></h1>
-  <div class="card-show-title">
+  <div class="card-show-title ">
     <%= link_to user_path(@visit_form.user), class: "nav-link" do%>
-      <h5><%= @visit_form.user.first_name.capitalize %> <%= @visit_form.user.last_name.capitalize %></h5>
+    <h5><%= @visit_form.user.first_name.capitalize %> <%= @visit_form.user.last_name.capitalize %></h5>
       <hr>
       <% if @visit_form.user.photo.attached? %>
         <%= cl_image_tag @visit_form.user.photo.key, class: "avatar-show" %>
@@ -12,17 +12,26 @@
       <% end%>
     <%end%>
     <b>Localisation du bien:</b><h5><%= @visit_form.address %></h5>
-    <b>Nombre de pièces:</b><h5><%= @visit_form.rooms_number %></h5>
+
+    <p><b>Nombre de pièces:</b> <span class="rooms-number"><%= @visit_form.rooms_number %></span></p>
     <p class="truncate-text"><a href="<%= @visit_form.url %>" target="_blank">Lien vers l'annonce</a></p>
     <%if @visit_form.description.present?%>
       <p>Description du bien: <%= @visit_form.description %></p>
     <%end%>
+
   </div>
+
+    <%if @visit_form.description.present?%>
+      <div class="card-show-critere">
+        <p><b>Description du bien:</b> <%= @visit_form.description %></p>
+      </div>
+    <%end%>
+
     <div class="mt-4"><h3>Critères à vérifier:</h3></div>
       <% if @visit_form.criteres.present?%>
         <% @visit_form.criteres.each do |critere|%>
           <% if critere.question.present? && critere.answer.present?%>
-            <div class="card-show-title">
+            <div class="card-show-critere">
               <p><b>Critère:</b> <%= critere.question %></p>
               <p><b>Réponse:</b> <%= critere.answer %></p>
               <% critere.photos.each do |photo| %>
@@ -30,13 +39,13 @@
               <% end %>
             </div>
           <%elsif critere.question.present?%>
-            <div class="card-show-title">
+            <div class="card-show-critere">
               <p><b>Critère:</b> <%= critere.question %></p>
             </div>
           <%end%>
         <%end%>
     <%else%>
-      <p><%= @visit_form.user.first_name.capitalize %> n'a pas précisé de critères à verifier</p>
+        <p><%= @visit_form.user.first_name.capitalize %> n'a pas précisé de critères à verifier</p>
     <%end%>
 
 
@@ -57,13 +66,18 @@
     <% if current_user == @visit_form.user && @visit_form.bookings.exists?(visit_form_id: @visit_form.id) == false %>
       <%=link_to "Supprimer la visite", visit_form_path(@visit_form), data: {turbo_method: :delete, turbo_confirm: "Etes vous sûr de vouloir supprimer cette visite" }, class:"btn button-supprimer"%>
     <%elsif current_user.bookings.exists?(visit_form_id: @visit_form.id) %>
-      <% if current_user.bookings.find_by(visit_form_id: @visit_form.id)&.status == "validé" %>
-      <%= link_to "Compléter le compte-rendu", edit_visit_form_path(@visit_form), class: "btn button-reserver" %>
-      <% elsif current_user.bookings.find_by(visit_form_id: @visit_form.id)&.status == "rejeté" %>
-      <div class="btn button-reserver">Rejeté</div>
-      <%else%>
-      <div class="btn button-reserver">En attente de validation</div>
-    <% end %>
+      <% @visit_form.bookings.each do |booking| %>
+        <% if booking.status == "validé" %>
+          <%= link_to "Editer mon compte-rendu", edit_visit_form_path(@visit_form), class: "btn button-reserver" %>
+          <%= link_to "Envoyer le compte-rendu", booking_ended_path(booking), data: { turbo_method: :patch, turbo_confirm: "Etes vous sûr de vouloir finaliser cette réservation, vous ne pourez plus la modifier ?" }, class: "btn btn button-terminer" %>
+        <%elsif booking.status == "en attente de validation"%>
+          <div class="btn button-reserver">En attente</div>
+        <%elsif booking.status == "terminée"%>
+        <div class="btn button-reserver">Votre rapport de visite a été envoyé</div>
+        <%else%>
+          <div class="btn button-reserver">Rejeté</div>
+        <%end%>
+    <%end%>
     <% elsif  current_user == @visit_form.user && @visit_form.bookings.exists?(visit_form_id: @visit_form.id) %>
     <div class="btn button-reserver">Votre visite a été réservée</div>
     <% else %>
