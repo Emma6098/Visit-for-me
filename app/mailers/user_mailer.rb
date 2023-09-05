@@ -5,8 +5,13 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.welcome.subject
   #
-  def welcome(user)
+  def welcome_preview
+    mail to: "toto@gmail.com", subject: "Bonjour Toto !"
+  end
+
+  def welcome(user, review)
     @user = user
-    mail to: @user.email, subject: "Bonjour #{@user.first_name}"
+    @review = review
+    mail(to: @user.email, subject: 'Nouveau commentaire reçu')
   end
 end
