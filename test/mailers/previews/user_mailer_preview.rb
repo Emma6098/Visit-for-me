@@ -7,4 +7,9 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.with(user: user).welcome
   end
 
+  def welcome_preview
+    user = User.last
+    UserMailer.welcome_preview
+  end
+
 end

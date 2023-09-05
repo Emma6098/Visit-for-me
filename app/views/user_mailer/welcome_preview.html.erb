@@ -8,12 +8,12 @@
 
         <h1 style="font-size: 24px; color: #333333; border-bottom: 1px solid #dddddd; padding-bottom: 10px; margin-bottom: 20px;">Notification de nouveau commentaire</h1>
 
-        <p style="font-size: 16px; color: #555555; line-height: 1.5;">Bonjour <%= @user.first_name %> !</p>
-        <p style="font-size: 16px; color: #555555; line-height: 1.5;">Votre client <%= @review.user.first_name %> vient de vous laisser un nouveau commentaire. Voici ce qu'il a écrit :</p>
+        <p style="font-size: 16px; color: #555555; line-height: 1.5;">Bonjour Toto !</p>
+        <p style="font-size: 16px; color: #555555; line-height: 1.5;">Votre client [NOM CLIENT] vient de vous laisser un nouveau commentaire. Voici ce qu'il a écrit :</p>
 
         <!-- Commentaire -->
         <div style="background-color: #f9f9f9; padding: 15px; border: 1px solid #e1e1e1; border-radius: 5px; margin-bottom: 20px;">
-            <p style="font-size: 16px; color: #333333; line-height: 1.5;"><%= @review.comment %></p>
+            <p style="font-size: 16px; color: #333333; line-height: 1.5;">[INSÉREZ LE COMMENTAIRE ICI]</p>
         </div>
 
         <p style="font-size: 16px; color: #555555; line-height: 1.5;">Nous vous souhaitons une excellente journée,</p>

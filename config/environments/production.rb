@@ -3,7 +3,7 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   config.action_mailer.default_url_options = { host: "http://TODO_PUT_YOUR_DOMAIN_HERE" }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: "blooming-woodland-84892.herokuapp.com" }
+  config.action_mailer.default_url_options = { host: "blooming-woodland-84892-a15a70af19f6.herokuapp.com" }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
