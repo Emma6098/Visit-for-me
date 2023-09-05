@@ -87,7 +87,7 @@ class VisitFormsController < ApplicationController
         r.save!
       end
     end
-    redirect_to visit_form_path(@visit_form), notice: "Le compte-rendu a été envoyé avec succès."
+    redirect_to visit_form_path(@visit_form)
   end
 
   def destroy
