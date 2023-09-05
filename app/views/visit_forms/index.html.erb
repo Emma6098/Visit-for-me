@@ -23,7 +23,7 @@
 
 
   <% @visit_forms.each do |visit_form|%>
-    <% unless visit_form.bookings.find { |booking| booking.status == "validé" } || visit_form.bookings.find { |booking| booking.status == "en attente de validation" } || visit_form.bookings.find { |booking| booking.status == "terminée" } %>
+    <% unless visit_form.bookings.find { |booking| booking.status == "validée" } || visit_form.bookings.find { |booking| booking.status == "en attente de validation" } || visit_form.bookings.find { |booking| booking.status == "terminée" } %>
       <%= link_to visit_form_path(visit_form) do%>
         <div class="card-index">
           <div class="index-content">
