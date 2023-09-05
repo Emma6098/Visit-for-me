@@ -1,4 +1,3 @@
-
 <div class="content">
   <div class="containernewvisit">
     <h1 class="titre-form">Complète le compte-rendu de visite !</h1>
@@ -13,7 +12,7 @@
               <h6><b>Description du bien :</b></h6>
               <p><%= f.object.description%></p>
             <%end%>
-            <p class="truncate-text"><a href="<%= f.object.url %>">Lien vers l'annonce</a></p>
+            <p class="truncate-text lien"><a href="<%= f.object.url %>">Lien vers l'annonce</a></p>
           </div>
 
           <b><%= f.input :date, label: 'Date de la visite', as: :string,
@@ -21,7 +20,6 @@
 
           <h6><b>Description du bien :</b></h6>
           <%= f.input :description, label: false, input_html: { rows: 3 }, placeholder: "", input_html: { class: 'custom-placeholder' }%>
-
           <% counter = 0  %>
           <% @visit_form.rooms.each do |room|  %>
             <% counter += 1 %>
@@ -39,17 +37,39 @@
                 <p><span data-photo-preview-target="span">0</span> photos téléchargées</p>
               </div>
               <br>
-              <%= f.file_field :"rooms_attributes[#{room.id}][photos]", as: :file, class: 'hidden-file-input', label: "Photo(s) de la pièce #{room.id + 1}" %>
+
               </label>
             </div>
           <% end %>
-
+          <div data-controller="add-room">
+          <button type="button" class="btn ajout-btn" id="addRoomButton" data-add-room-target ="room" data-action = "click->add-room#addRoom">
+            <i class="fa-solid fa-plus"></i> Ajouter une pièce
+          </button>
+          </div>
           <%= f.simple_fields_for :criteres do  |critere|%>
             <%= render 'critere_fields_edit', f: critere, visit_form_user: @visit_form_user %>
           <%end%>
 
-          <%= f.button :submit, 'Envoyer le compte-rendu', class: 'btn-submit', onclick: "return confirm('Êtes-vous sûr de vouloir envoyer le compte-rendu ?');" %>
-
+          <button type="button" class="btn btn-submit" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+          Envoyer le compte-rendu
+          </button>
+          <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Êtes-vous sûr de vouloir envoyer le compte-rendu ?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Annuler</button>
+                <%= f.submit 'Envoyer', class: 'btn btn-submit' %>
+              </div>
+            </div>
+          </div>
+          </div>
         <% end %>
     </div>
   </div>

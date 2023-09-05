@@ -1,7 +1,7 @@
 <div class="content">
 
   <h1 class = "show-title"><%= @visit_form.title %></h1>
-  <div class="card-show-title">
+  <div class="card-show-title ">
     <%= link_to user_path(@visit_form.user), class: "nav-link" do%>
       <h5><%= @visit_form.user.first_name.capitalize %> <%= @visit_form.user.last_name.capitalize %></h5>
       <hr>
@@ -13,16 +13,18 @@
     <%end%>
     <b>Localisation du bien:</b><h5><%= @visit_form.address %></h5>
     <b>Nombre de pièces:</b><h5><%= @visit_form.rooms_number %></h5>
-    <p class="truncate-text"><a href="<%= @visit_form.url %>" target="_blank">Lien vers l'annonce</a></p>
-    <%if @visit_form.description.present?%>
-      <p>Description du bien: <%= @visit_form.description %></p>
-    <%end%>
+    <p class="truncate-text"><a class="lien" href="<%= @visit_form.url %>" target="_blank">Lien vers l'annonce</a></p>
   </div>
+    <%if @visit_form.description.present?%>
+      <div class="card-show-critere">
+        <p><b>Description du bien:</b> <%= @visit_form.description %></p>
+      </div>
+    <%end%>
     <div class="mt-4"><h3>Critères à vérifier:</h3></div>
       <% if @visit_form.criteres.present?%>
         <% @visit_form.criteres.each do |critere|%>
           <% if critere.question.present? && critere.answer.present?%>
-            <div class="card-show-title">
+            <div class="card-show-critere">
               <p><b>Critère:</b> <%= critere.question %></p>
               <p><b>Réponse:</b> <%= critere.answer %></p>
               <% critere.photos.each do |photo| %>
@@ -30,7 +32,7 @@
               <% end %>
             </div>
           <%elsif critere.question.present?%>
-            <div class="card-show-title">
+            <div class="card-show-critere">
               <p><b>Critère:</b> <%= critere.question %></p>
             </div>
           <%end%>
