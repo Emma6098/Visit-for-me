@@ -1,0 +1,6 @@
+meta_product_name : "VisitForMe"
+meta_title : "VisitForMe | Laissez nous visiter à votre place"
+meta_description : "Tu cherches à visiter un appartement mais tu n’as pas la possibilité de t’y rendre ?
+Visit For Me facilite la visite d'appartements en permettant de déléguer cette tâche à une personne de confiance "
+meta_image : "VisitForMe.png" # devrait exister dans `app/assets/images/`
+compte_twitter : "@ product_twitter_account" # requis pour les cartes Twitter
