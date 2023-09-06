@@ -61,7 +61,7 @@
         </div>
         <h3 class="mt-5 mb-4">Avis</h3>
           <% if @user.received_reviews.empty? %>
-            <small><em class="text-muted">Soit le premier à laisser un avis à <%= @user.first_name.capitalize %> !</em></small>
+            <small><em class="text-muted"><%= @user.first_name.capitalize %> n'a aucun avis pour le moment !</em></small>
           <% end %>
           <% @user.received_reviews.each do |review| %>
             <div>
