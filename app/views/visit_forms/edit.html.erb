@@ -41,15 +41,9 @@
               </label>
             </div>
           <% end %>
-          <div data-controller="add-room">
-          <button type="button" class="btn ajout-btn" id="addRoomButton" data-add-room-target ="room" data-action = "click->add-room#addRoom">
-            <i class="fa-solid fa-plus"></i> Ajouter une pièce
-          </button>
-          </div>
           <%= f.simple_fields_for :criteres do  |critere|%>
             <%= render 'critere_fields_edit', f: critere, visit_form_user: @visit_form_user %>
           <%end%>
-
           <%= f.button :submit, 'Enregistrer le compte-rendu', class: 'btn-submit'%>
         <% end %>
     </div>
