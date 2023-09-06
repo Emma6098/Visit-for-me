@@ -46,7 +46,7 @@ class VisitFormsController < ApplicationController
     @visit_form.user = current_user
 
     if @visit_form.save
-      redirect_to @visit_form
+      redirect_to visit_form_path(@visit_form)
       @visit_form.create_rooms
     else
       render :new, status: :unprocessable_entity
