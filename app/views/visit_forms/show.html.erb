@@ -104,7 +104,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Annuler</button>
-                <%= link_to "Envoyer", booking_ended_path(booking), data: { turbo_method: :patch}, class: "btn button-terminer-mod" %>
+                <%= link_to "Envoyer", ended_path(@visit_form), data: { turbo_method: :patch}, class: "btn button-terminer-mod" %>
               </div>
             </div>
           </div>

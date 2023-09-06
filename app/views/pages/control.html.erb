@@ -101,7 +101,7 @@
         </div>
       <% end %>
 
-      <% if current_user.visit_forms.any? { |visit_form| visit_form.bookings.empty? } %>
+      <% if current_user.visit_forms.any? { |visit_form| visit_form.bookings.exists? } %>
         <div class="section">
           <h3 class="mb-3">Visites sans réservation &#128546</h3>
           <% current_user.visit_forms.each do |visit_form| %>
@@ -125,17 +125,18 @@
       <div class="empty"><i> Vous n'êtes inscrit à aucune visite pour le moment</i></div>
       <div><%= link_to "Trouver une visite", visit_forms_path, class: "btn button-reserver" %></div>
     <% else %>
-    <% if current_user.bookings.any? { |booking| booking.status == "en attente de validation" } %>
-      <div class="section">
-        <h3 class="mb-3">Réservations en attente &#8987</h3>
-        <% current_user.bookings.select { |booking| booking.status == "en attente de validation" }.each do |booking| %>
-          <%= link_to visit_form_path(booking.visit_form), class: "text-decoration-none" do %>
-            <div class="card-control">
-              <h3 class="text-dark"><%= truncate(booking.visit_form.title, length: 18, omission: '...') %></h3>
-              <p class="text-muted"><%= booking.visit_form.user.first_name.capitalize %></p>
-              <p class="text-muted"><i><%= booking.status %></i></p>
-          <% end %>
-            <div class="btn-flex">
+      <% if current_user.bookings.any? { |booking| booking.status == "en attente de validation" } %>
+        <div class="section">
+          <h3 class="mb-3">Réservations en attente &#8987</h3>
+          <% current_user.bookings.select { |booking| booking.status == "en attente de validation" }.each do |booking| %>
+            <%= link_to visit_form_path(booking.visit_form), class: "text-decoration-none" do %>
+              <div class="card-control">
+                <h3 class="text-dark"><%= truncate(booking.visit_form.title, length: 18, omission: '...') %></h3>
+                <p class="text-muted"><%= booking.visit_form.user.first_name.capitalize %></p>
+                <p class="text-muted"><i><%= booking.status %></i></p>
+              </div>
+            <% end %>
+              <div class="btn-flex">
                 <button type="button" class="btn btn-delete" data-bs-toggle="modal" data-bs-target="#confirmationModal">
                   Supprimer cette réservation
                 </button>
@@ -157,77 +158,76 @@
                   </div>
                 </div>
               </div>
-            </div>
-        <% end %>
-      </div>
-   <% end %>
-
-    <% if current_user.bookings.any? { |booking| booking.status == "validée" } %>
-      <div class="section">
-        <h3 class="mb-3">Réservations validées &#9989</h3>
-        <% current_user.bookings.select { |booking| booking.status == "validée" }.each do |booking| %>
-          <%= link_to visit_form_path(booking.visit_form), class: "text-decoration-none" do %>
-            <div class="card-control">
-              <h3 class="text-dark"><%= truncate(booking.visit_form.title, length: 18, omission: '...') %></h3>
-              <p class="text-muted"><%= booking.visit_form.user.first_name.capitalize %></p>
-              <p class="text-muted"><i><%= booking.status %></i></p>
           <% end %>
-          <div class="btn-flex">
-                <button type="button" class="btn btn-delete" data-bs-toggle="modal" data-bs-target="#confirmationModal">
-                  Supprimer cette réservation
-                </button>
-                <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        Etes vous sûr de vouloir supprimer cette réservation ?
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Annuler</button>
-                        <%=link_to "Supprimer", booking_path(booking), data: {turbo_method: :delete}, class:"btn button-supprimer-mod"%>
+        </div>
+      <% end %>
+
+      <% if current_user.bookings.any? { |booking| booking.status == "validée" } %>
+        <div class="section">
+          <h3 class="mb-3">Réservations validées &#9989</h3>
+          <% current_user.bookings.select { |booking| booking.status == "validée" }.each do |booking| %>
+            <%= link_to visit_form_path(booking.visit_form), class: "text-decoration-none" do %>
+              <div class="card-control">
+                <h3 class="text-dark"><%= truncate(booking.visit_form.title, length: 18, omission: '...') %></h3>
+                <p class="text-muted"><%= booking.visit_form.user.first_name.capitalize %></p>
+                <p class="text-muted"><i><%= booking.status %></i></p>
+                <div class="btn-flex">
+                  <button type="button" class="btn btn-delete" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+                    Supprimer cette réservation
+                  </button>
+                  <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Etes vous sûr de vouloir supprimer cette réservation ?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Annuler</button>
+                          <%=link_to "Supprimer", booking_path(booking), data: {turbo_method: :delete}, class:"btn button-supprimer-mod"%>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-
-    <% if current_user.bookings.any? { |booking| booking.status == "rejetée" } %>
-      <div class="section">
-        <h3 class="mb-3">Réservations rejetées &#10060</h3>
-        <% current_user.bookings.select { |booking| booking.status == "rejetée" }.each do |booking| %>
-          <%= link_to visit_form_path(booking.visit_form), class: "text-decoration-none" do %>
-            <div class="card-control">
-              <h3 class="text-dark"><%= truncate(booking.visit_form.title, length: 18, omission: '...') %></h3>
-              <p class="text-muted"><%= booking.visit_form.user.first_name.capitalize %></p>
-              <p class="text-muted"><i><%= booking.status %></i></p>
-            </div>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
-    <% end %>
+        </div>
+      <% end %>
 
-    <% if current_user.bookings.any? { |booking| booking.status == "terminée" } %>
-      <div class="section">
-        <h3 class="mb-3">Visites terminées &#127881</h3>
-        <% current_user.bookings.select { |booking| booking.status == "terminée" }.each do |booking| %>
-          <%= link_to visit_form_path(booking.visit_form), class: "text-decoration-none" do %>
-            <div class="card-control">
-              <h3 class="text-dark"><%= truncate(booking.visit_form.title, length: 18, omission: '...') %></h3>
-              <p class="text-muted"><%= booking.visit_form.user.first_name.capitalize %></p>
-              <p class="text-muted"><i><%= booking.status %></i></p>
-            </div>
+      <% if current_user.bookings.any? { |booking| booking.status == "rejetée" } %>
+        <div class="section">
+          <h3 class="mb-3">Réservations rejetées &#10060</h3>
+          <% current_user.bookings.select { |booking| booking.status == "rejetée" }.each do |booking| %>
+            <%= link_to visit_form_path(booking.visit_form), class: "text-decoration-none" do %>
+              <div class="card-control">
+                <h3 class="text-dark"><%= truncate(booking.visit_form.title, length: 18, omission: '...') %></h3>
+                <p class="text-muted"><%= booking.visit_form.user.first_name.capitalize %></p>
+                <p class="text-muted"><i><%= booking.status %></i></p>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
+
+      <% if current_user.bookings.any? { |booking| booking.status == "terminée" } %>
+        <div class="section">
+          <h3 class="mb-3">Visites terminées &#127881</h3>
+          <% current_user.bookings.select { |booking| booking.status == "terminée" }.each do |booking| %>
+            <%= link_to visit_form_path(booking.visit_form), class: "text-decoration-none" do %>
+              <div class="card-control">
+                <h3 class="text-dark"><%= truncate(booking.visit_form.title, length: 18, omission: '...') %></h3>
+                <p class="text-muted"><%= booking.visit_form.user.first_name.capitalize %></p>
+                <p class="text-muted"><i><%= booking.status %></i></p>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>

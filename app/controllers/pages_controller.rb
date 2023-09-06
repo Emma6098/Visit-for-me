@@ -25,8 +25,9 @@ class PagesController < ApplicationController
   end
 
   def ended
-    @booking_ended = Booking.find(params[:booking_id])
-    @booking_ended.update!(status: "terminée")
+    @visit_form = VisitForm.find(params[:id])
+    @booking = Booking.where(visit_form: @visit_form, status: "validée")
+    @booking.update!(status: "terminée")
     redirect_to control_path
   end
 end
