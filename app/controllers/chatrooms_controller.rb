@@ -10,6 +10,7 @@ class ChatroomsController < ApplicationController
   def index
     @chatroom_user = current_user
     @chatrooms = Chatroom.where("user_id = ? OR other_user_id = ?", current_user.id, current_user.id)
+    @current_user_first_name = current_user.first_name
   end
 
   private

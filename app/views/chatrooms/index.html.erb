@@ -4,7 +4,11 @@
     <%= link_to chatroom_path(chatroom) do %>
       <div class="card-index-chat">
         <div class="index-content">
-          <h3><%= chatroom.name %></h3>
+          <% if current_user != chatroom.other_user %>
+            <h3>Chat avec <%= chatroom.other_user.first_name %></h3>
+          <% else %>
+            <h3>Chat avec <%= chatroom.user.first_name %></h3>
+          <% end %>
           <% if chatroom.chats.present? %>
             <p class="last-chat"><%= chatroom.chats.last.content %></p>
           <% else %>

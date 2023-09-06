@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_05_102933) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_06_082908) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,9 +56,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_05_102933) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "chatroom_id"
-    t.bigint "user_id"
-    t.bigint "other_user_id"
+    t.bigint "user_id", null: false
+    t.bigint "other_user_id", null: false
+    t.index ["other_user_id"], name: "index_chatrooms_on_other_user_id"
+    t.index ["user_id"], name: "index_chatrooms_on_user_id"
   end
 
   create_table "chats", force: :cascade do |t|
@@ -144,8 +145,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_05_102933) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "users"
   add_foreign_key "bookings", "visit_forms"
-  add_foreign_key "chatrooms", "chatrooms"
   add_foreign_key "chatrooms", "users"
+  add_foreign_key "chatrooms", "users", column: "other_user_id"
   add_foreign_key "chats", "chatrooms"
   add_foreign_key "chats", "users"
   add_foreign_key "criteres", "visit_forms"

@@ -5,11 +5,11 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-# Critere.destroy_all
-# Booking.destroy_all
-# VisitForm.destroy_all
-# User.destroy_all
-# Chatroom.destroy_all
+Chatroom.destroy_all
+Critere.destroy_all
+Booking.destroy_all
+VisitForm.destroy_all
+User.destroy_all
 
 users = User.create([
 {first_name: "Emma", last_name: "Creteur", email: "emma@toto.com", password: 123456},
@@ -30,4 +30,4 @@ criteres = Critere.create!([
   {visit_form_id: VisitForm.third.id, question:"blabla3"}
 ])
 
-chatroom = Chatroom.create!({name:" la chatroom de la seed"})
+chatroom = Chatroom.create!({name:"visit for me", user_id: User.first.id, other_user_id: User.last.id})
