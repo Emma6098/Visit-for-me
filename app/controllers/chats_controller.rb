@@ -4,6 +4,7 @@ class ChatsController < ApplicationController
     @chat = Chat.new(message_params)
     @chat.chatroom = @chatroom
     @chat.user = current_user
+    @toto = @chatroom.other_user
     if @chat.save
       ChatroomChannel.broadcast_to(
         @chatroom,

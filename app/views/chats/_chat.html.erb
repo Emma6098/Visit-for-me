@@ -1,5 +1,6 @@
 <div id="chat-<%= chat.id %>">
   <% if chat.user == current_user %>
+    <%= chat.id %>
     <div class="current_user_chat chat-box">
       <small>
         <p><%= chat.created_at.strftime("%a %b %e at %l:%M %p") %></p>
@@ -8,11 +9,11 @@
     </div>
   <% else %>
     <div class="other-chatbox">
-          <% if current_user.photo.attached? %>
-              <%= cl_image_tag current_user.photo.key, class: "avatar avatar-nav" %>
-            <% else %>
-            <img src="https://res.cloudinary.com/dhvssfzz1/image/upload/v1693474293/avatar-_mtc5tf.jpg" class="avatar avatar-nav" alt= "dropdown menu">
-            <% end%>
+      <% if current_user.photo.attached? %>
+          <%= cl_image_tag current_user.photo.key, class: "avatar avatar-nav" %>
+        <% else %>
+        <img src="https://res.cloudinary.com/dhvssfzz1/image/upload/v1693474293/avatar-_mtc5tf.jpg" class="avatar avatar-nav" alt= "dropdown menu">
+      <% end%>
       <div class="other_user_chat chat-box">
         <small>
           <p><%= chat.created_at.strftime("%a %b %e at %l:%M %p") %></p>

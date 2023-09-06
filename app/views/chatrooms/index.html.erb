@@ -1,28 +1,32 @@
 <div class="content">
-<h1> Discussions</h1>
-  <% @chatrooms.each do |chatroom| %>
-    <%= link_to chatroom_path(chatroom) do %>
-      <div class="card-index-chat">
-        <div class="index-content">
-          <% if current_user != chatroom.other_user %>
-            <h3>Chat avec <%= chatroom.other_user.first_name %></h3>
-          <% else %>
-            <h3>Chat avec <%= chatroom.user.first_name %></h3>
-          <% end %>
-          <% if chatroom.chats.present? %>
-            <p class="last-chat"><%= chatroom.chats.last.content %></p>
-          <% else %>
-            <p class="last-chat">Aucun message</p>
-          <% end %>
+  <h1> Discussions</h1>
+  <% if @chatrooms.present? %>
+    <% @chatrooms.each do |chatroom| %>
+      <%= link_to chatroom_path(chatroom) do %>
+        <div class="card-index-chat">
+          <div class="index-content">
+            <% if current_user != chatroom.other_user %>
+              <h3>Chat avec <%= chatroom.other_user.first_name %></h3>
+            <% else %>
+              <h3>Chat avec <%= chatroom.user.first_name %></h3>
+            <% end %>
+            <% if chatroom.chats.present? %>
+              <p class="last-chat"><%= chatroom.chats.last.content %></p>
+            <% else %>
+              <p class="last-chat">Aucun message</p>
+            <% end %>
+          </div>
+          <div class="index-avatar">
+            <% if @chatroom_user.photo.attached? %>
+              <%= cl_image_tag chatroom_user.photo.key, class: "avatar-i avatar-absolut-i" %>
+            <% else %>
+              <img class="avatar-c avatar-absolut-i" src="https://res.cloudinary.com/dhvssfzz1/image/upload/v1693474293/avatar-_mtc5tf.jpg" alt="">
+            <% end %>
+          </div>
         </div>
-        <div class="index-avatar">
-          <% if @chatroom_user.photo.attached? %>
-            <%= cl_image_tag chatroom_user.photo.key, class: "avatar-i avatar-absolut-i" %>
-          <% else %>
-            <img class="avatar-c avatar-absolut-i" src="https://res.cloudinary.com/dhvssfzz1/image/upload/v1693474293/avatar-_mtc5tf.jpg" alt="">
-          <% end %>
-        </div>
-      </div>
+      <% end %>
     <% end %>
+  <% else %>
+        <p class="chatrooom-title"><i>vous n'avez pas encore de conversations</i><p>
   <% end %>
 </div>
