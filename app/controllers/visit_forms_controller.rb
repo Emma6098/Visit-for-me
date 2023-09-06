@@ -7,12 +7,20 @@ class VisitFormsController < ApplicationController
     end
 
     @markers = @visit_forms.geocoded.map do |visit_form|
-      {
-        lat: visit_form.latitude,
-        lng: visit_form.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {visit_form: visit_form})
-      }
-    end
+      has_valid_booking = visit_form.bookings.any? { |booking| booking.status == "validée" }
+      has_pending_booking = visit_form.bookings.any? { |booking| booking.status == "en attente de validation" }
+
+      if !has_valid_booking && !has_pending_booking
+        {
+          lat: visit_form.latitude,
+          lng: visit_form.longitude,
+          info_window_html: render_to_string(partial: "info_window", locals: {visit_form: visit_form})
+        }
+      else
+        nil # Exclure les visites avec des réservations valides ou en attente de validation
+      end
+    end.compact
+
   end
 
   def show
