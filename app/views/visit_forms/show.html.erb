@@ -12,14 +12,15 @@
       <% end%>
     <%end%>
     <b>Localisation du bien:</b><h5><%= @visit_form.address %></h5>
-
     <p><b>Nombre de pièces:</b> <span class="rooms-number"><%= @visit_form.rooms_number %></span></p>
     <p class="truncate-text"><a href="<%= @visit_form.url %>" target="_blank">Lien vers l'annonce</a></p>
-    <%if @visit_form.description.present?%>
-      <p>Description du bien: <%= @visit_form.description %></p>
-    <%end%>
-
   </div>
+
+    <%if @visit_form.date.present?%>
+      <div class="card-show-critere">
+        <p><b>Date de la visite:</b> <%= @visit_form.date.strftime("%d/%m/%Y") %></p>
+      </div>
+    <%end%>
 
     <%if @visit_form.description.present?%>
       <div class="card-show-critere">
@@ -64,24 +65,81 @@
 
   <div class="margin-div">
     <% if current_user == @visit_form.user && @visit_form.bookings.exists?(visit_form_id: @visit_form.id) == false %>
-      <%=link_to "Supprimer la visite", visit_form_path(@visit_form), data: {turbo_method: :delete, turbo_confirm: "Etes vous sûr de vouloir supprimer cette visite" }, class:"btn button-supprimer"%>
+      <button type="button" class="btn button-supprimer" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+        Supprimer la visite
+      </button>
+        <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Etes vous sûr de vouloir supprimer cette visite ?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Annuler</button>
+                <%=link_to "Supprimer la visite", visit_form_path(@visit_form), data: {turbo_method: :delete}, class:"btn button-supprimer-mod"%>
+              </div>
+            </div>
+          </div>
+        </div>
     <%elsif current_user.bookings.exists?(visit_form_id: @visit_form.id) %>
-      <% @visit_form.bookings.each do |booking| %>
-        <% if booking.status == "validée" %>
+      <% user_booking = @visit_form.bookings.find_by(user_id: current_user.id) %>
+        <% if user_booking.status == "validée" %>
           <%= link_to "Editer mon compte-rendu", edit_visit_form_path(@visit_form), class: "btn button-reserver" %>
-          <%= link_to "Envoyer le compte-rendu", booking_ended_path(booking), data: { turbo_method: :patch, turbo_confirm: "Etes vous sûr de vouloir finaliser cette réservation, vous ne pourez plus la modifier ?" }, class: "btn btn button-terminer" %>
-        <%elsif booking.status == "en attente de validation"%>
-          <div class="btn button-reserver">En attente</div>
-        <%elsif booking.status == "terminée"%>
+          <button type="button" class="btn button-terminer" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+          Envoyer le compte-rendu
+          </button>
+          <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Etes vous sûr de vouloir finaliser cette réservation, vous ne pourrez plus la modifier ?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Annuler</button>
+                <%= link_to "Envoyer", booking_ended_path(booking), data: { turbo_method: :patch}, class: "btn button-terminer-mod" %>
+              </div>
+            </div>
+          </div>
+          </div>
+        <%elsif user_booking.status == "en attente de validation"%>
+          <div class="btn button-reserver">En attente de validation</div>
+        <%elsif user_booking.status == "terminée"%>
         <div class="btn button-reserver">Votre rapport de visite a été envoyé</div>
-        <%else%>
-          <div class="btn button-reserver">Rejeté</div>
+        <%elsif user_booking.status == "rejetée"%>
+          <div class="btn button-reserver">Rejetée</div>
         <%end%>
-      <%end%>
+
     <% elsif  current_user == @visit_form.user && @visit_form.bookings.exists?(visit_form_id: @visit_form.id) %>
       <div class="btn button-reserver">Votre visite a été réservée</div>
     <% else %>
-      <%=link_to "Réserver la visite", visit_form_bookings_path(@visit_form), data: {turbo_method: :post, turbo_confirm: "Etes vous sûr de vouloir réserver cette formation?" }, class:"btn button-reserver"%>
+      <button type="button" class="btn button-reserver" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+          Réserver la visite
+      </button>
+      <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Êtes-vous sûr de vouloir réserver cette visite ?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Annuler</button>
+            <%=link_to "Réserver la visite", visit_form_bookings_path(@visit_form), data: {turbo_method: :post}, class:"btn button-re-mod"%>
+          </div>
+        </div>
+      </div>
+      </div>
     <%end%>
   </div>
 

@@ -50,26 +50,7 @@
             <%= render 'critere_fields_edit', f: critere, visit_form_user: @visit_form_user %>
           <%end%>
 
-          <button type="button" class="btn btn-submit" data-bs-toggle="modal" data-bs-target="#confirmationModal">
-          Envoyer le compte-rendu
-          </button>
-          <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                Êtes-vous sûr de vouloir envoyer le compte-rendu ?
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Annuler</button>
-                <%= f.submit 'Envoyer', class: 'btn btn-submit' %>
-              </div>
-            </div>
-          </div>
-          </div>
+          <%= f.button :submit, 'Enregistrer le compte-rendu', class: 'btn-submit'%>
         <% end %>
     </div>
   </div>
