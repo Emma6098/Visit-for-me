@@ -1,5 +1,6 @@
 class ChatroomsController < ApplicationController
   def show
+    @chatroom_user = current_user
     @chatroom = Chatroom.find(params[:id])
     @chat = Chat.new
     unless current_user.id == @chatroom.user_id || current_user.id == @chatroom.other_user_id
@@ -16,6 +17,6 @@ class ChatroomsController < ApplicationController
   private
 
   def chatroom_params
-    params.require(:chatroom).permit(:name, :chats)
+    params.require(:chatroom).permit(:name, :chats, :photo)
   end
 end
