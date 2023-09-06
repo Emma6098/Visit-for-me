@@ -9,8 +9,9 @@ class VisitFormsController < ApplicationController
     @markers = @visit_forms.geocoded.map do |visit_form|
       has_valid_booking = visit_form.bookings.any? { |booking| booking.status == "validée" }
       has_pending_booking = visit_form.bookings.any? { |booking| booking.status == "en attente de validation" }
+      has_end_booking = visit_form.bookings.any? { |booking| booking.status == "terminée" }
 
-      if !has_valid_booking && !has_pending_booking
+      if !has_valid_booking && !has_pending_booking && !has_end_booking
         {
           lat: visit_form.latitude,
           lng: visit_form.longitude,
