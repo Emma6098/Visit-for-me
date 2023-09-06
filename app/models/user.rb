@@ -13,6 +13,10 @@ class User < ApplicationRecord
     Review.where(recipient: self)
   end
 
+  def my_reviews
+    Review.where(recipient: self)
+  end
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }

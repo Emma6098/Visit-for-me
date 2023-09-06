@@ -47,7 +47,7 @@
         <div class="card-profil">
           <div class="profil-content">
             <h1><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %></h1>
-            <%if @reviews.present?%>
+            <%if @user.my_reviews.present?%>
               <p><%= @average_rating %> <i class="fas fa-star star-yellow"></i></p>
             <%end%>
           </div>

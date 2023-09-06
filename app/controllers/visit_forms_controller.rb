@@ -89,7 +89,6 @@ class VisitFormsController < ApplicationController
     end
     if @visit_form.save
       redirect_to visit_form_path(@visit_form)
-      @visit_form.create_rooms
     else
       render :new, status: :unprocessable_entity
     end
