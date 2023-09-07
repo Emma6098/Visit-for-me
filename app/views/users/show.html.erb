@@ -4,11 +4,12 @@
     <h1> Mon profil </h1>
       <div class="card-profil">
         <div class="profil-content">
-          <h1 class="user-name"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h1>
-          <%if @reviews.present?%>
+          <h2 class="user-name"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h2>
+          <p><i><%= current_user.email %></i></p>
+          <%if @user.my_reviews.present?%>
             <p><%= @average_rating %> <i class="fas fa-star star-yellow"></i></p>
           <%end%>
-          <p><i><%= current_user.email %></i></p>
+
         </div>
         <div class="update">
           <%= link_to edit_user_registration_path do%>
