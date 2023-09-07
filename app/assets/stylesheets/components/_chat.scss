@@ -18,24 +18,25 @@
 
 @keyframes incoming {
   0% {
-    right: -100%;
     opacity: 0%;
   }
   100% {
-    right: 0%;
     opacity: 1;
   }
 }
 
 .chat-box {
   border: 2px solid rgba(0, 0, 0, 0.555);
-  border-radius: 4px;
-  padding: 4px;
+  border-radius: 12px;
+  padding: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
   margin-bottom: 14px;
   width: 100%;
   margin-left: 6px;
   animation: incoming 1s ease;
 }
+
 .other-chatbox{
   min-width: 100px;
   display: flex;
@@ -45,4 +46,10 @@
 .chatrooom-title {
   text-align: center;
   margin-top: 30px;
+}
+
+.text{
+max-height: 45px;
+width: 255px;
+border-radius: 5px;
 }

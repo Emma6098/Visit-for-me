@@ -5,7 +5,7 @@
       <% if current_user == booking.user %>
         <p>Critère : <b><%= f.object.question %></b></p>
         <%= f.input :answer, label: false %>
-        <%="Photo(s):" %>
+        <%="votre photo:" %>
         <br>
         <div class="d-flex align-items-center">
           <%= image_tag "", width: 300, class: "photo-edit d-none", data: { photo_preview_target: "preview" } %>
@@ -14,7 +14,7 @@
             <%= f.file_field :photos, as: :file, class: 'hidden-file-input', data: { photo_preview_target: "input", action: "change->photo-preview#displayPreview" } %>
           </label>
         </div>
-        <p><span data-photo-preview-target="span">0</span> photos téléchargées</p>
+        <p><span data-photo-preview-target="span">0</span> photo téléchargée</p>
       <% end %>
     </div>
   <% end %>

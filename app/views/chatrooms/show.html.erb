@@ -14,17 +14,17 @@
             <% end %>
           </div>
 
-
-
           <%= simple_form_for [@chatroom, @chat],
             html: {class: "d-flex", data: {chatroom_subscription_target: "form"}} do |f|
           %>
             <%= f.input :content,
               label: false,
-              placeholder: "Chat ##{@chatroom.name}",
+              placeholder: "Ecrivez un message...",
               wrapper_html: {class: "search"}
             %>
-            <%= f.submit "Send", class: "btn btn-search" %>
+            <%= button_tag(type: 'submit', class: 'btn btn-send') do %>
+              <i class="fas fa-paper-plane"></i>
+            <% end %>
           <% end %>
         </div>
       </div>

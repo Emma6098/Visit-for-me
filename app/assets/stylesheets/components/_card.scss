@@ -13,14 +13,6 @@
   justify-content: center;
 }
 
-.address {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-
 .index-content{
   display: flex;
   flex-direction: column;
@@ -187,7 +179,7 @@ text-decoration: none !important}
   flex-direction: column;
   align-items: flex-start;
   margin-left: 110px;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: 10px;
   h1 {
     margin: 0px;

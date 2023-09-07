@@ -1,9 +1,11 @@
 class ChatroomsController < ApplicationController
   def show
+    @chatroom_user = current_user
     @chatroom = Chatroom.find(params[:id])
     @chat = Chat.new
     unless current_user.id == @chatroom.user_id || current_user.id == @chatroom.other_user_id
       redirect_to root_path, notice: "vous n'avez ps acces a cette chatroom"
+    @current_user_first_name = current_user.first_name
     end
   end
 
@@ -16,6 +18,6 @@ class ChatroomsController < ApplicationController
   private
 
   def chatroom_params
-    params.require(:chatroom).permit(:name, :chats)
+    params.require(:chatroom).permit(:name, :chats, :photo)
   end
 end

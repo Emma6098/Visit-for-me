@@ -33,6 +33,14 @@
  left:10px;
 }
 
+.avatar-absolut-i-chat{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left:10px;
+  border-radius: 50px;
+ }
+
 .logo{
   border-radius: 5px;
 }
