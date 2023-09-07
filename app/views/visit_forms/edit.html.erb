@@ -12,7 +12,7 @@
               <h6><b>Description du bien :</b></h6>
               <p><%= f.object.description%></p>
             <%end%>
-            <p class="truncate-text lien"><a href="<%= f.object.url %>">Lien vers l'annonce</a></p>
+            <p><i class="fa-solid fa-angle-right"></i> <a href="<%= f.object.url %>" class="truncate-text">Lien vers l'annonce</a></p>
           </div>
 
           <b><%= f.input :date, label: 'Date de la visite', as: :string,
