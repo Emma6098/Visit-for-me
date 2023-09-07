@@ -56,8 +56,15 @@
   margin-top: 30px;
 }
 
-.text{
+.custom-input-class{
 max-height: 45px;
 width: 255px;
-border-radius: 5px;
+border-top-left-radius: 5px;
+border-bottom-left-radius: 5px;
+border-top-right-radius: 0px;
+border-bottom-right-radius: 0px;
+border-right: none;
+position: relative;
+background-color: white !important;
+padding-right: 45px;
 }
