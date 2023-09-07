@@ -29,5 +29,3 @@ criteres = Critere.create!([
   {visit_form_id: VisitForm.second.id, question:"blabla2"},
   {visit_form_id: VisitForm.third.id, question:"blabla3"}
 ])
-
-chatroom = Chatroom.create!({name:"visit for me", user_id: User.first.id, other_user_id: User.last.id})
