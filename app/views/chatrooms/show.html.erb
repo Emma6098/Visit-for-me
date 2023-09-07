@@ -1,19 +1,22 @@
 <div class="content">
-  <div class="container chatroom">
-    <div class="chats">
-      <div class="container chatroom"
-      data-controller="chatroom-subscription"
-      data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id%>"
-      >
-        <p class="chatrooom-title"><i><%= @chatroom.name %></i><p>
-        <div class="chatroom-content">
-          <div class="chats" data-chatroom-subscription-target="chats">
-            <% @chatroom.chats.each do |chat| %>
-              <%= render "chats/chat", chat: chat %>
-            <% end %>
-          </div>
-
-
+<div class="container chatroom">
+<div class="chats">
+<div class="container chatroom"
+data-controller="chatroom-subscription"
+data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id%>"
+>
+  <p class="chatrooom-title">
+  <% if current_user != @chatroom.other_user %>
+        <i><p class="chatrooom-title">Chat avec <%= @chatroom.other_user.first_name %></p></i>
+      <% else %>
+        <i><p class="chatrooom-title">Chat avec <%= @chatroom.user.first_name %></p>
+      <% end %></p>
+  <div class="chatroom-content">
+    <div class="chats" data-chatroom-subscription-target="chats">
+      <% @chatroom.chats.each do |chat| %>
+        <%= render "chats/chat", chat: chat %>
+      <% end %>
+    </div>
 
           <%= simple_form_for [@chatroom, @chat],
             html: {class: "d-flex", data: {chatroom_subscription_target: "form"}} do |f|
@@ -31,4 +34,7 @@
       </div>
     </div>
   </div>
+</div>
+</div>
+</div>
 </div>
