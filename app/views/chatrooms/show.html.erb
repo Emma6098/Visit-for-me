@@ -18,18 +18,21 @@ data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id%>"
       <% end %>
     </div>
 
-
-
-    <%= simple_form_for [@chatroom, @chat],
-      html: {class: "d-flex", data: {chatroom_subscription_target: "form"}} do |f|
-    %>
-      <%= f.input :content,
-        label: false,
-        placeholder: "Chat ##{@chatroom.name}",
-        wrapper_html: {class: "search"}
-      %>
-      <%= f.submit "Send", class: "btn btn-search" %>
-    <% end %>
+          <%= simple_form_for [@chatroom, @chat],
+            html: {class: "d-flex", data: {chatroom_subscription_target: "form"}} do |f|
+          %>
+            <%= f.input :content,
+              label: false,
+              placeholder: "Ecrivez un message...",
+              wrapper_html: {class: "search"}
+            %>
+            <%= button_tag(type: 'submit', class: 'btn btn-send') do %>
+              <i class="fas fa-paper-plane"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 </div>
