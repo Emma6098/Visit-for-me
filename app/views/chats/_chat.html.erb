@@ -1,6 +1,5 @@
 <div id="chat-<%= chat.id %>">
   <% if chat.user == current_user %>
-    <%= chat.id %>
     <div class="current_user_chat chat-box">
       <small>
         <p><%= chat.created_at.strftime("%a %b %e at %l:%M %p") %></p>
@@ -23,3 +22,5 @@
     </div>
   <% end %>
 </div>
+
+
