@@ -146,10 +146,17 @@
 .btn-send{
   background-color: white;
   color: #8695FF;
-  border-radius: 8px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   height: 45px;
   width: 45px;
   text-align: center;
+  border-right : #dee2e6 1px solid;
+  border-top : #dee2e6 1px solid;
+  border-bottom : #dee2e6 1px solid;
+  margin-left: -45px;
+  z-index: 3;
+  margin-top: 2px;
   }
 
 .btn-map{

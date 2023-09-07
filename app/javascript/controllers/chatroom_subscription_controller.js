@@ -44,10 +44,7 @@ export default class extends Controller {
   myMessageTemplate(data) {
     return `
     <div class="current_user_chat chat-box">
-    <p>${data.sender_name}</p>
-      <small>
-        <p>${data.send_time}</p>
-      </small>
+    <p class="current-user-chat-header">Moi</p>
         ${data.chat}
     </div>
     `
@@ -57,10 +54,7 @@ export default class extends Controller {
     console.log(data)
     return `
     <div class="other_user_chat chat-box">
-      <p>${data.sender_name}</p>
-      <small>
-        <p>${data.send_time}</p>
-      </small>
+      <p class="other-user-chat-header">${data.sender_name}</p>
       ${data.chat}
     </div>
     `
