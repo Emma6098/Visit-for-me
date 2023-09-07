@@ -1,12 +1,12 @@
 .current_user_chat {
   background-color: #c6cdffa6;
   text-align: right;
-  box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.377);
+  box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.3);
   &.chat-box {
     border-radius: 8px 8px 0px 8px;
   }
   .current-user-chat-header {
-    color: #00168f;
+    color: #133664;
     font-weight: bold;
   }
 }
@@ -14,12 +14,12 @@
 .other_user_chat {
   text-align: left;
   background-color: #7caef17a;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.377);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
   &.chat-box {
     border-radius: 8px 8px 8px 0px;
   }
   .other-user-chat-header {
-    color: #00168f;
+    color: #133664;
     font-weight: bold;
   }
 }
@@ -34,7 +34,6 @@
 }
 
 .chat-box {
-  border: 2px solid rgba(0, 0, 0, 0.555);
   border-radius: 12px;
   padding: 6px;
   padding-left: 10px;
