@@ -3,12 +3,20 @@
   margin-bottom: 20px;
 }
 .popup-map{
-
-  color: black;
+  color: #133664;
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
   a{
     text-decoration: none;
   }
 }
 a {
   text-decoration: none;
+}
+
+.address {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
