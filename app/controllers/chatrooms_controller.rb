@@ -5,6 +5,7 @@ class ChatroomsController < ApplicationController
     @chat = Chat.new
     unless current_user.id == @chatroom.user_id || current_user.id == @chatroom.other_user_id
       redirect_to root_path, notice: "vous n'avez ps acces a cette chatroom"
+    @current_user_first_name = current_user.first_name
     end
   end
 
