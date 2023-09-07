@@ -40,7 +40,6 @@
   padding-right: 10px;
   margin-bottom: 14px;
   width: 100%;
-  margin-left: 6px;
   animation: incoming 1s ease;
 }
 
@@ -67,4 +66,9 @@ border-right: none;
 position: relative;
 background-color: white !important;
 padding-right: 45px;
+}
+
+.bouton-bas {
+  position: fixed;
+  bottom: 60px;
 }
