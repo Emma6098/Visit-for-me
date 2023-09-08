@@ -6,7 +6,6 @@
       data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id%>"
       data-chatroom-subscription-user-id-value="<%= current_user.id%>"
       >
-        <p class="chatrooom-title"><i><%= @chatroom.name %></i><p>
         <div class="chatroom-content">
           <div class="chats" data-chatroom-subscription-target="chats">
             <% @chatroom.chats.each do |chat| %>
