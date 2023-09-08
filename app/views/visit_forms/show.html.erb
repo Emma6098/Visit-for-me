@@ -13,7 +13,7 @@
     <%end%>
     <b>Localisation du bien:</b><h5><%= @visit_form.address %></h5>
     <p><b>Nombre de pièces:</b> <span class="rooms-number"><%= @visit_form.rooms_number %></span></p>
-    <p class="truncate-text"><a href="<%= @visit_form.url %>" target="_blank">Lien vers l'annonce</a></p>
+    <p><i class="fa-solid fa-angle-right"></i> <a href="<%= @visit_form.url %>" target="_blank" class="truncate-text">Lien vers l'annonce</a></p>
   </div>
 
     <%if @visit_form.date.present?%>

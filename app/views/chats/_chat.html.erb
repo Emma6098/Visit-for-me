@@ -5,26 +5,10 @@
       <p><%= chat.content %></p>
     </div>
   <% else %>
-    <div class="other-chatbox">
-      <% if current_user == @chatroom.other_user %>
-        <% if @chatroom.user.photo.attached? %>
-          <%= cl_image_tag @chatroom.user.photo.key, class: "avatar avatar-nav" %>
-        <% else %>
-          <img src="https://res.cloudinary.com/dhvssfzz1/image/upload/v1693474293/avatar-_mtc5tf.jpg" class="avatar avatar-nav" alt= "dropdown menu">
-        <% end%>
-      <% else %>
-        <% if @chatroom.other_user.photo.attached? %>
-          <%= cl_image_tag @chatroom.other_user.photo.key, class: "avatar avatar-nav" %>
-        <% else %>
-          <img class="avatar avatar-nav" src="https://res.cloudinary.com/dhvssfzz1/image/upload/v1693474293/avatar-_mtc5tf.jpg" alt="">
-        <% end %>
-      <% end %>
       <div class="other_user_chat chat-box">
         <p class="other-user-chat-header"><%= chat.user.first_name %></p>
         <p><%= chat.content %></p>
       </div>
-    </div>
+
   <% end %>
 </div>
-
-
